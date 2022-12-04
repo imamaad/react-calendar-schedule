@@ -1,6 +1,6 @@
 {
   "name": "calendar-schedule",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A modern and responsive react calendar schedule component.",
   "main": "index.js",
   "repository": "git@github.com:imamaad/calendar-schedule.git",
