@@ -1,1 +1,1 @@
-export {CalendarSchedule} from "components/CalendarSchedule";
+export {default as CalendarSchedule} from "./CalendarSchedule";

@@ -2,34 +2,24 @@ import React, {useEffect, useRef, useState} from "react";
 import {useWindowSize} from "hooks";
 import moment from "moment";
 import {buildCalendar} from "./buildCalendar";
-import _ from "lodash";
 import {CalendarScheduleSider} from "components/CalendarScheduleSider/CalendarScheduleSider";
+import {CalendarScheduleContainer} from "components/CalendarScheduleContainer/CalendarScheduleContainer";
+import _ from "lodash";
 
 import "./calendar-schedule.scss";
-import {CalendarScheduleContainer} from "components/CalendarScheduleContainer/CalendarScheduleContainer";
 
-export interface CalendarSchedule {
+export interface CalendarScheduleInterface {
     startDate: string,
     titleColumns: string,
     columns: Array<any>,
     changeStartDate: (value: any) => void,
     size: { width: number, height: number },
     dataSource: Array<any>,
-    renderCellDataSource: (day: any, item: any) => any
     renderItemCell: (item?: any, index?: number) => React.ReactNode | string,
 }
 
-export const CalendarSchedule = (props: CalendarSchedule) => {
-    const {
-        startDate,
-        titleColumns = "",
-        columns = [],
-        changeStartDate,
-        size,
-        dataSource,
-        renderCellDataSource,
-        renderItemCell
-    } = props;
+export const CalendarSchedule = (props: CalendarScheduleInterface) => {
+    const {startDate, titleColumns = "", columns = [], changeStartDate, size, dataSource, renderItemCell} = props;
 
     const [calendar, setCalendar] = useState<Array<any>>([]);
     const refSide = useRef<any>(null);
