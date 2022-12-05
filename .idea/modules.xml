@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/calendar-schedule.iml" filepath="$PROJECT_DIR$/.idea/calendar-schedule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/react-calendar-schedule.iml" filepath="$PROJECT_DIR$/.idea/react-calendar-schedule.iml" />
     </modules>
   </component>
 </project>
