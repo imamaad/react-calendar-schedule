@@ -3,9 +3,10 @@ import {useWindowSize} from "hooks";
 import moment from "moment";
 import {buildCalendar} from "./buildCalendar";
 import _ from "lodash";
-import dayClasses from "./stylesCalendar";
+import {CalendarScheduleSider} from "components/CalendarScheduleSider/CalendarScheduleSider";
 
 import "./calendar-schedule.scss";
+import {CalendarScheduleContainer} from "components/CalendarScheduleContainer/CalendarScheduleContainer";
 
 export interface CalendarSchedule {
     startDate: string,
@@ -15,10 +16,20 @@ export interface CalendarSchedule {
     size: { width: number, height: number },
     dataSource: Array<any>,
     renderCellDataSource: (day: any, item: any) => any
+    renderItemCell: (item?: any, index?: number) => React.ReactNode | string,
 }
 
 export const CalendarSchedule = (props: CalendarSchedule) => {
-    const {startDate, titleColumns = "", columns = [], changeStartDate, size, dataSource, renderCellDataSource} = props;
+    const {
+        startDate,
+        titleColumns = "",
+        columns = [],
+        changeStartDate,
+        size,
+        dataSource,
+        renderCellDataSource,
+        renderItemCell
+    } = props;
 
     const [calendar, setCalendar] = useState<Array<any>>([]);
     const refSide = useRef<any>(null);
@@ -56,11 +67,6 @@ export const CalendarSchedule = (props: CalendarSchedule) => {
     const onScroll = (event: any) => {
         const element = event.target;
         refSide.current.scrollTop = element.scrollTop;
-        /*   if (refCalendar.current.scrollLeft !== lastScrollLeft) {
-             // refCalendar.current.style.transform = `translate3d(${(refCalendar.current.scrollLeft * -1)}px, 0px, 0px)`;
-             // handleLeftScroll();
-             handleRightScroll();
-           }*/
     };
 
     const startDrag = (x: any, y: any) => {
@@ -182,71 +188,39 @@ export const CalendarSchedule = (props: CalendarSchedule) => {
         dragging(x, y);
     };
 
-    const touchEnd = (event:any) => {
-        const {x, y}:any = generateTouchPoint(event);
+    const touchEnd = (event: any) => {
+        const {x, y}: any = generateTouchPoint(event);
         endDrag();
     };
 
     return (
         <div className='calendar-grid-table calendar-ops'>
-            <div className='box-left-titles-calendar-scheduler-horizontal' style={{width: size.width}}>
-                <div className='box-title-items-calendar-scheduler-horizontal' style={{width: size.width}}>
-                    {titleColumns}
-                </div>
-                <ul className='list-titles-calendar-scheduler-horizontal' style={{width: size.width}} ref={refSide}>
-                    {_.map(columns, item =>
-                        <li className='box-item-title-calendar-scheduler-horizontal'
-                            style={{minWidth: size.width, height: size.height}} key={item._id}>
-                            {<span>{item?.aircraftType?.shortname}</span>}
-                            <span><b>{item.registration}</b></span>
-                            {item.subTitleBottom && <span>{item.subTitleBottom}</span>}
-                        </li>
-                    )}
-                </ul>
-            </div>
-            <div className="flex-1 d-flex flex-direction-column" style={{width: '1%'}}>
-                <div className='box-header-calendar-scheduler-horizontal' ref={refBoxDays}>
-                    {calendar.map((day, index) =>
-                        <div className={`box-title-day-calendar-scheduler-horizontal ${dayClasses(day)}`}
-                             style={{minWidth: size.width, width: size.width}}
-                             ref={dayClasses(day) === "today" ? refTodayHeader : null} key={index}>
-                            {day && moment(day).format('D MMM ddd')}
-                        </div>
-                    )}
-                </div>
-
-                <div ref={refCalendar} className="calendar-grid-row"
-                     onScroll={onScroll} onMouseDown={mouseDown} onMouseLeave={mouseOut}
-                     onMouseMove={mouseMove} onMouseUp={mouseUp} onTouchStart={touchStart}
-                     onTouchMove={touchMove} onTouchEnd={touchEnd}
-                >
-                    <div className='calendar-grid-cell'>
-                        <div className="colsContent" ref={refBoxData}>
-                            <div className='draggable-calendar'>
-                                <div className='box-calendar-scheduler-horizontal'>
-                                    <div className='box-body-calendar-scheduler-horizontal'>
-                                        {calendar.map((day, index) =>
-                                            <div className='box-week-calendar-scheduler-horizontal' key={index}>
-                                                {
-                                                    <div className='box-data-day-calendar-scheduler-horizontal'>
-                                                        {_.map(columns, item =>
-                                                            <div className='box-item-day-calendar-scheduler-horizontal'
-                                                                 style={{width: size.width, height: size.height}}
-                                                                 key={item._id}>
-                                                                {renderCellDataSource(day, item)}
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                }
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <CalendarScheduleSider
+                columns={columns}
+                width={180}
+                title={titleColumns}
+                refListGroup={refSide}
+            />
+            <CalendarScheduleContainer
+                refContent={refCalendar}
+                calendar={calendar}
+                refListDates={refBoxDays}
+                refTodayHeader={refTodayHeader}
+                refBoxData={refBoxData}
+                columns={columns}
+                dataSource={dataSource}
+                renderItemCell={renderItemCell}
+                contentEvents={{
+                    onScroll: onScroll,
+                    onMouseDown: mouseDown,
+                    onMouseLeave: mouseOut,
+                    onMouseMove: mouseMove,
+                    onMouseUp: mouseUp,
+                    onTouchStart: touchStart,
+                    onTouchMove: touchMove,
+                    onTouchEnd: touchEnd,
+                }}
+            />
         </div>
     )
 }
