@@ -35,6 +35,6 @@ export const TestOne = Template.bind({});
 TestOne.args = {
     titleColumns: 'Aircraft',
     size: {width: 180, height: 180},
-    columns: [{}, {}, {}, {}],
+    columns: [{}, {}],
     dataSource: [{}, {}],
 };
