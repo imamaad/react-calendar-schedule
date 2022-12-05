@@ -1,8 +1,7 @@
 {
-  "name": "@imamaad/react-calendar-schedule",
-  "version": "0.1.1",
+  "name": "react-calendar-schedule",
+  "version": "0.1.8",
   "description": "A modern and responsive react calendar schedule component.",
-  "repository": "git@github.com:imamaad/react-calendar-schedule.git",
   "author": "mohammad hossine rezazadeh <imamaad.ir@gmail.com>",
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -12,8 +11,9 @@
   "files": [
     "dist"
   ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/imamaad"
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:imamaad/react-calendar-schedule.git"
   },
   "scripts": {
     "rollup": "rollup -c",
