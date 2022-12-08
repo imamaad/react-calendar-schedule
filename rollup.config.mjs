@@ -25,13 +25,15 @@ export default [
             resolve(),
             commonjs(),
             typescript({tsconfig: "./tsconfig.json"}),
-            postcss(),
+            postcss()
         ],
+        external: ["react", "react-dom"],
     },
     {
         input: "dist/esm/types/index.d.ts",
         output: [{file: "dist/index.d.ts", format: "esm"}],
         plugins: [dts()],
-        external: [/\.css$/],
+        external: [/\.css$/,/\.scss$/],
+
     },
 ];

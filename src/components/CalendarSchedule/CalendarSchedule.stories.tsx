@@ -23,7 +23,6 @@ const Template: ComponentStory<typeof CalendarSchedule> = (args) => {
             <CalendarSchedule
                 {...args}
                 startDate={date}
-                renderCellDataSource={() => <div>DATA</div>}
                 changeStartDate={handleChangeStartDate}
                 renderItemCell={(item, index) => <div key={index}>{item.title}</div>}
             />

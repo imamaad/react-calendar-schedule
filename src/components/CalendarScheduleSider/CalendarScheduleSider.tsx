@@ -1,14 +1,14 @@
 import {CalendarScheduleListGroup} from "components/CalendarScheduleListGroup/CalendarScheduleListGroup";
 import React from "react";
 
-export interface CalendarScheduleSider {
+export interface CalendarScheduleSiderInterface {
     title: string,
     width?: string | number,
     refListGroup: React.LegacyRef<HTMLDivElement>,
     columns: Array<any>
 }
 
-export const CalendarScheduleSider = (props: CalendarScheduleSider) => {
+export const CalendarScheduleSider = (props: CalendarScheduleSiderInterface) => {
 
     const {title, width = 180, refListGroup, columns} = props;
 
