@@ -20,16 +20,6 @@ steps:
     verbose: false
     customCommand: 'run rollup'
 
-- task: Npm@1
-  displayName: 'npm publish beta (conditionally)'
-  inputs:
-    command: custom
-    verbose: false
-    customCommand: 'publish --tag beta'
-    publishEndpoint: npm
-    customEndpoint: npm
-  continueOnError: true
-  condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/heads/beta'))
 
 - task: Npm@1
   displayName: 'npm publish beta (conditionally)'
