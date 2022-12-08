@@ -30,3 +30,15 @@ steps:
     customEndpoint: npm
   continueOnError: true
   condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/heads/beta'))
+
+- task: Npm@1
+  displayName: 'npm publish beta (conditionally)'
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'publish --tag beta'
+    publishEndpoint: npm
+    customEndpoint: npm
+    publishRegistry: 'useFeed'
+    publishFeed: '491d3f0d-0acb-4801-8cdb-7abfdb2786ae'
+  continueOnError: true
