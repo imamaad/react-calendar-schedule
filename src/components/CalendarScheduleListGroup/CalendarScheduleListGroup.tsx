@@ -7,14 +7,14 @@ export interface Groups {
     subTitle?: string,
 }
 
-export interface CalendarScheduleListGroup {
+export interface CalendarScheduleListGroupInterface {
     width?: string | number
     heightItemGroup?: string | number,
     columns: Array<Groups>
     refListGroup: React.LegacyRef<HTMLDivElement>
 }
 
-export const CalendarScheduleListGroup = (props: CalendarScheduleListGroup) => {
+export const CalendarScheduleListGroup = (props: CalendarScheduleListGroupInterface) => {
     const {width = 180, heightItemGroup = 180, columns, refListGroup} = props;
 
     return (

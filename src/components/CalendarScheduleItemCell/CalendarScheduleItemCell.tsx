@@ -1,7 +1,7 @@
 import React, {useMemo} from "react";
 import _ from "lodash";
 
-export interface CalendarScheduleItemCell {
+export interface CalendarScheduleItemCellInterface {
     column: any,
     renderItemCell: (item?: any, index?: number) => React.ReactNode | string,
     width: string | number,
@@ -9,7 +9,7 @@ export interface CalendarScheduleItemCell {
     dataSource: Array<any>
 }
 
-export const CalendarScheduleItemCell = (props: CalendarScheduleItemCell) => {
+export const CalendarScheduleItemCell = (props: CalendarScheduleItemCellInterface) => {
     const {column, renderItemCell, width, height, dataSource} = props;
 
     const items = useMemo(() =>

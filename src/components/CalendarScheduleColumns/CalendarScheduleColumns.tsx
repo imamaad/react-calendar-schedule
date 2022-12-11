@@ -3,7 +3,7 @@ import {CalendarScheduleItemCell} from "components/CalendarScheduleItemCell/Cale
 import React, {useMemo} from "react";
 import moment from "moment/moment";
 
-export interface CalendarScheduleColumns {
+export interface CalendarScheduleColumnsInterface {
     date: string | moment.Moment,
     width?: string | number,
     height?: string | number,
@@ -12,7 +12,7 @@ export interface CalendarScheduleColumns {
     dataSource: Array<any>
 }
 
-export const CalendarScheduleColumns = (props: CalendarScheduleColumns) => {
+export const CalendarScheduleColumns = (props: CalendarScheduleColumnsInterface) => {
 
     const {date, columns, width = 180, height = 180, renderItemCell, dataSource} = props;
 

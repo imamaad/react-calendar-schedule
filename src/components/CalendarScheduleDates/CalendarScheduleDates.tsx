@@ -2,14 +2,14 @@ import React from "react";
 import dayClasses from "components/CalendarSchedule/stylesCalendar";
 import moment from "moment";
 
-export interface CalendarScheduleDates {
+export interface CalendarScheduleDatesInterface {
     refListDates: React.LegacyRef<HTMLDivElement>,
     refTodayHeader: React.LegacyRef<HTMLDivElement>,
     calendar: Array<string | moment.Moment>,
     width: string | number
 }
 
-export const CalendarScheduleDates = (props: CalendarScheduleDates) => {
+export const CalendarScheduleDates = (props: CalendarScheduleDatesInterface) => {
     const {refListDates, calendar, width, refTodayHeader} = props;
     return (
         <div className='box-header-calendar-scheduler-horizontal' ref={refListDates}>

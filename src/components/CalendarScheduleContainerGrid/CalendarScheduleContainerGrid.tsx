@@ -1,10 +1,8 @@
-import _ from "lodash";
-import {CalendarScheduleItemCell} from "components/CalendarScheduleItemCell/CalendarScheduleItemCell";
 import React from "react";
 import moment from "moment";
 import {CalendarScheduleColumns} from "components/CalendarScheduleColumns/CalendarScheduleColumns";
 
-export interface CalendarScheduleContainerGrid {
+export interface CalendarScheduleContainerGridInterface {
     refContent: React.LegacyRef<HTMLDivElement>,
     refBoxData: React.LegacyRef<HTMLDivElement>,
     calendar: Array<string | moment.Moment>,
@@ -25,7 +23,7 @@ export interface CalendarScheduleContainerGrid {
     }
 }
 
-export const CalendarScheduleContainerGrid = (props: CalendarScheduleContainerGrid) => {
+export const CalendarScheduleContainerGrid = (props: CalendarScheduleContainerGridInterface) => {
     const {
         refContent,
         contentEvents,

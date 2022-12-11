@@ -3,7 +3,7 @@ import moment from "moment/moment";
 import {CalendarScheduleDates} from "components/CalendarScheduleDates/CalendarScheduleDates";
 import {CalendarScheduleContainerGrid} from "components/CalendarScheduleContainerGrid/CalendarScheduleContainerGrid";
 
-export interface CalendarScheduleContainer {
+export interface CalendarScheduleContainerInterface {
     refContent: React.LegacyRef<HTMLDivElement>,
     refListDates: React.LegacyRef<HTMLDivElement>,
     refTodayHeader: React.LegacyRef<HTMLDivElement>,
@@ -26,7 +26,7 @@ export interface CalendarScheduleContainer {
     }
 }
 
-export const CalendarScheduleContainer = (props: CalendarScheduleContainer) => {
+export const CalendarScheduleContainer = (props: CalendarScheduleContainerInterface) => {
     const {
         refContent,
         calendar,
