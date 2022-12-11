@@ -1,6 +1,6 @@
 {
   "name": "react-calendar-schedule",
-  "version": "0.1.0-beta.3",
+  "version": "0.1.0-beta.4",
   "description": "A modern and responsive react calendar schedule component.",
   "author": "mohammad hossine rezazadeh <imamaad.ir@gmail.com>",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "url": "git@github.com:imamaad/react-calendar-schedule.git"
   },
   "scripts": {
-    "rollup": "rollup -c",
+    "build": "rollup -c",
     "dev": "rollup -c --watch",
     "test": "jest",
     "storybook": "start-storybook -p 6006",

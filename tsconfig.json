@@ -115,7 +115,5 @@
     "allowSyntheticDefaultImports": true,
     "emitDeclarationOnly": true,
     "baseUrl": "src",
-  },
-  "include": ["src"],
-  "exclude": ["dist","lib", "es", "node_modules", "**/*.test.tsx"]
+  }
 }
