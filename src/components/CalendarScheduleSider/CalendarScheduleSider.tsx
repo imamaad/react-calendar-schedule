@@ -1,4 +1,4 @@
-import {CalendarScheduleListGroup} from "components/CalendarScheduleListGroup/CalendarScheduleListGroup";
+import {CalendarScheduleListGroup} from "../CalendarScheduleListGroup/CalendarScheduleListGroup";
 import React from "react";
 
 export interface CalendarScheduleSiderInterface {

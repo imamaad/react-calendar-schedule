@@ -1,5 +1,5 @@
 import _ from "lodash";
-import {CalendarScheduleItemCell} from "components/CalendarScheduleItemCell/CalendarScheduleItemCell";
+import {CalendarScheduleItemCell} from "../CalendarScheduleItemCell/CalendarScheduleItemCell";
 import React, {useMemo} from "react";
 import moment from "moment/moment";
 

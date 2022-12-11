@@ -2,8 +2,8 @@ import React, {useEffect, useRef, useState} from "react";
 import {useWindowSize} from "hooks";
 import moment from "moment";
 import {buildCalendar} from "./buildCalendar";
-import {CalendarScheduleSider} from "components/CalendarScheduleSider/CalendarScheduleSider";
-import {CalendarScheduleContainer} from "components/CalendarScheduleContainer/CalendarScheduleContainer";
+import {CalendarScheduleSider} from "../CalendarScheduleSider/CalendarScheduleSider";
+import {CalendarScheduleContainer} from "../CalendarScheduleContainer/CalendarScheduleContainer";
 import _ from "lodash";
 
 import "./calendar-schedule.scss";

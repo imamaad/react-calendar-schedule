@@ -1,5 +1,5 @@
 import React from "react";
-import dayClasses from "components/CalendarSchedule/stylesCalendar";
+import dayClasses from "../CalendarSchedule/stylesCalendar";
 import moment from "moment";
 
 export interface CalendarScheduleDatesInterface {

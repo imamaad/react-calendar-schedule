@@ -1,6 +1,6 @@
 import React from "react";
 import _ from "lodash";
-import {CalendarScheduleItemGroup} from "components/CalendarScheduleItemGroup/CalendarScheduleItemGroup";
+import {CalendarScheduleItemGroup} from "../CalendarScheduleItemGroup/CalendarScheduleItemGroup";
 
 export interface Groups {
     title: string,
