@@ -17,6 +17,7 @@
   },
   "scripts": {
     "rollup": "rollup -c",
+    "dev": "rollup -c --watch",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
