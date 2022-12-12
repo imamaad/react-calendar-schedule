@@ -31,6 +31,8 @@
 }
 
 .list-titles-calendar-scheduler-horizontal {
+  overflow: hidden;
+
   .box-item-title-calendar-scheduler-horizontal {
     border-bottom: 1px solid #cbcbcb;
     display: flex;
