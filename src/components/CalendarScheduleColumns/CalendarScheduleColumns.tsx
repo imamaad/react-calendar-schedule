@@ -3,10 +3,9 @@ import {CalendarScheduleItemCell} from "../CalendarScheduleItemCell/CalendarSche
 import React, {useMemo} from "react";
 import moment from "moment/moment";
 import {ColumnsInterface} from "common/interfaces/ColumnInterface";
-import {RenderItemCell} from "common/interfaces/RenderItemCell";
 import {DataSourceInterface} from "common/interfaces/dataSourceItemInterface";
 
-export interface CalendarScheduleColumnsInterface extends ColumnsInterface, RenderItemCell, DataSourceInterface {
+export interface CalendarScheduleColumnsInterface extends ColumnsInterface, DataSourceInterface {
     date: string | moment.Moment,
     width?: string | number,
     height?: string | number,
@@ -14,7 +13,7 @@ export interface CalendarScheduleColumnsInterface extends ColumnsInterface, Rend
 
 export const CalendarScheduleColumns = (props: CalendarScheduleColumnsInterface) => {
 
-    const {date, columns, width = 180, height = 180, renderItem, dataSource} = props;
+    const {date, columns, width = 180, height = 180, dataSource} = props;
 
     const thisDay = useMemo(() => moment(date), [date]);
 
@@ -28,7 +27,6 @@ export const CalendarScheduleColumns = (props: CalendarScheduleColumnsInterface)
                 <div className='box-data-day-calendar-scheduler-horizontal'>
                     {_.map(columns, (column, index) =>
                         <CalendarScheduleItemCell
-                            renderItem={renderItem}
                             width={width}
                             height={height}
                             key={index}

@@ -1,10 +1,11 @@
-import resolve from '@rollup/plugin-node-resolve';
+import nodePolyfills from 'rollup-plugin-polyfill-node';
+import nodeResolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import dts from 'rollup-plugin-dts';
 import postcss from "rollup-plugin-postcss";
 
-import packageJson from "./package.json" assert { type: "json" };
+import packageJson from "./package.json" assert {type: "json"};
 
 export default [
     {
@@ -22,17 +23,18 @@ export default [
             },
         ],
         plugins: [
-            resolve(),
+            nodePolyfills(),
+            nodeResolve(),
             commonjs(),
             typescript({tsconfig: "./tsconfig.json"}),
             postcss()
         ],
-        external: ["react", "react-dom"],
+        external: ["react", "react-dom", "moment", "lodash"],
     },
     {
         input: "dist/esm/types/index.d.ts",
         output: [{file: "dist/index.d.ts", format: "esm"}],
         plugins: [dts()],
-        external: [/\.css$/,/\.scss$/],
+        external: [/\.css$/, /\.scss$/],
     },
 ];

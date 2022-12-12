@@ -5,14 +5,13 @@ import {buildCalendar} from "./buildCalendar";
 import {CalendarScheduleSider} from "../CalendarScheduleSider/CalendarScheduleSider";
 import {CalendarScheduleContainer} from "../CalendarScheduleContainer/CalendarScheduleContainer";
 import _ from "lodash";
-import {RenderItemCell} from "common/interfaces/RenderItemCell";
 import {ColumnsInterface} from "common/interfaces/ColumnInterface";
 import {DataSourceInterface, DataSourceItemInterface} from "common/interfaces/dataSourceItemInterface";
 
 import "./calendar-schedule.scss";
 import {CalendarScheduleItem} from "components/CalendarScheduleItem";
 
-export interface CalendarScheduleInterface extends ColumnsInterface, RenderItemCell, DataSourceInterface {
+export interface CalendarScheduleInterface extends ColumnsInterface, DataSourceInterface {
     startDate: string,
     titleColumns: string,
     changeStartDate: (value: any) => void,
@@ -27,7 +26,6 @@ export const CalendarSchedule = (props: CalendarScheduleInterface) => {
         changeStartDate,
         size,
         dataSource,
-        renderItem = (item: DataSourceItemInterface, index) => <CalendarScheduleItem item={item} key={index}/>
     } = props;
 
     const [calendar, setCalendar] = useState<Array<any>>([]);
@@ -208,7 +206,6 @@ export const CalendarSchedule = (props: CalendarScheduleInterface) => {
                 refBoxData={refBoxData}
                 columns={columns}
                 dataSource={dataSource}
-                renderItem={renderItem}
                 contentEvents={{
                     onScroll: onScroll,
                     onMouseDown: mouseDown,

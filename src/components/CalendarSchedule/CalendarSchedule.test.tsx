@@ -9,7 +9,6 @@ describe("CalendarSchedule", () => {
                 size={{width: 180, height: 180}}
                 columns={[]}
                 dataSource={[]}
-                renderItemCell={() => <div></div>}
                 startDate={'2020-10-10'}
                 changeStartDate={() => {
                 }}
