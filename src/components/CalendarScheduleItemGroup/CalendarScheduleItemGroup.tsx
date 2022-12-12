@@ -3,8 +3,8 @@ import React from "react";
 export interface CalendarScheduleItemGroupInterface {
     title?: string,
     subTitle?: string,
-    width?:string|number
-    height?:string|number
+    width?: string | number
+    height?: string | number
 }
 
 export const CalendarScheduleItemGroup = (props: CalendarScheduleItemGroupInterface) => {

@@ -1,16 +1,12 @@
 import React from "react";
 import _ from "lodash";
 import {CalendarScheduleItemGroup} from "../CalendarScheduleItemGroup/CalendarScheduleItemGroup";
-
-export interface Groups {
-    title: string,
-    subTitle?: string,
-}
+import {ColumnInterface} from "common/interfaces";
 
 export interface CalendarScheduleListGroupInterface {
     width?: string | number
     heightItemGroup?: string | number,
-    columns: Array<Groups>
+    columns: Array<ColumnInterface>
     refListGroup: React.LegacyRef<HTMLDivElement>
 }
 
@@ -19,7 +15,7 @@ export const CalendarScheduleListGroup = (props: CalendarScheduleListGroupInterf
 
     return (
         <div className='list-titles-calendar-scheduler-horizontal' style={{width}} ref={refListGroup}>
-            {_.map(columns, (item: Groups, index) =>
+            {_.map(columns, (item: ColumnInterface, index) =>
                 <CalendarScheduleItemGroup
                     title={item.title}
                     subTitle={item.subTitle}

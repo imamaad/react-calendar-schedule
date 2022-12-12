@@ -5,13 +5,14 @@ import {buildCalendar} from "./buildCalendar";
 import {CalendarScheduleSider} from "../CalendarScheduleSider/CalendarScheduleSider";
 import {CalendarScheduleContainer} from "../CalendarScheduleContainer/CalendarScheduleContainer";
 import _ from "lodash";
+import {ColumnInterface} from "common/interfaces";
 
 import "./calendar-schedule.scss";
 
 export interface CalendarScheduleInterface {
     startDate: string,
     titleColumns: string,
-    columns: Array<any>,
+    columns: Array<ColumnInterface>,
     changeStartDate: (value: any) => void,
     size: { width: number, height: number },
     dataSource: Array<any>,

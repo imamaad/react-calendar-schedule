@@ -35,8 +35,8 @@ TestOne.args = {
     titleColumns: 'Aircraft',
     size: {width: 180, height: 180},
     columns: [
-        {accessorKey: 'CRJ200', title: "CRJ 200", placeholderCell: 'placeholderCell 1'},
-        {accessorKey: 'CRJ300', title: "CRJ 200", placeholderCell: 'placeholderCell 2'}
+        {accessorKey: 'CRJ200', title: "CRJ 200", placeholderCell: 'p 1'},
+        {accessorKey: 'CRJ300', title: "CRJ 200", placeholderCell: 'p 2'}
     ],
     dataSource: [
         {
