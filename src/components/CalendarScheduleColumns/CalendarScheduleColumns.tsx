@@ -2,8 +2,8 @@ import _ from "lodash";
 import {CalendarScheduleItemCell} from "../CalendarScheduleItemCell/CalendarScheduleItemCell";
 import React, {useMemo} from "react";
 import moment from "moment/moment";
-import {ColumnsInterface} from "common/interfaces/ColumnInterface";
-import {DataSourceInterface} from "common/interfaces/dataSourceItemInterface";
+import {ColumnsInterface} from "../../common/interfaces";
+import {DataSourceInterface} from "../../common/interfaces";
 
 export interface CalendarScheduleColumnsInterface extends ColumnsInterface, DataSourceInterface {
     date: string | moment.Moment,

@@ -1,8 +1,8 @@
 import React, {useMemo} from "react";
 import _ from "lodash";
-import {ColumnInterface, DataSourceItemInterface} from "common/interfaces";
-import {DataSourceInterface} from "common/interfaces/dataSourceItemInterface";
-import {CalendarScheduleItem} from "components/CalendarScheduleItem";
+import {ColumnInterface} from "../../common/interfaces";
+import {DataSourceInterface, DataSourceItemInterface} from "../../common/interfaces";
+import {CalendarScheduleItem} from "../CalendarScheduleItem";
 
 export interface CalendarScheduleItemCellInterface extends DataSourceInterface {
     column: ColumnInterface,

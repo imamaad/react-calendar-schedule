@@ -1,6 +1,6 @@
 import {CalendarScheduleListGroup} from "../CalendarScheduleListGroup/CalendarScheduleListGroup";
 import React from "react";
-import {ColumnInterface} from "common/interfaces";
+import {ColumnInterface} from "../../common/interfaces";
 
 export interface CalendarScheduleSiderInterface {
     title: string,

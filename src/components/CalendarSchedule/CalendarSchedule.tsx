@@ -1,15 +1,15 @@
 import React, {useEffect, useRef, useState} from "react";
-import {useWindowSize} from "hooks";
 import moment from "moment";
 import {buildCalendar} from "./buildCalendar";
 import {CalendarScheduleSider} from "../CalendarScheduleSider/CalendarScheduleSider";
 import {CalendarScheduleContainer} from "../CalendarScheduleContainer/CalendarScheduleContainer";
 import _ from "lodash";
-import {ColumnsInterface} from "common/interfaces/ColumnInterface";
-import {DataSourceInterface, DataSourceItemInterface} from "common/interfaces/dataSourceItemInterface";
+import {ColumnsInterface} from "../../common/interfaces";
+import {DataSourceInterface} from "../../common/interfaces";
+import {useWindowSize} from "../../hooks";
 
 import "./calendar-schedule.scss";
-import {CalendarScheduleItem} from "components/CalendarScheduleItem";
+
 
 export interface CalendarScheduleInterface extends ColumnsInterface, DataSourceInterface {
     startDate: string,

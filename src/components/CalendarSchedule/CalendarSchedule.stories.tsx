@@ -1,8 +1,8 @@
 import * as React from 'react'
 import {ComponentStory, ComponentMeta} from "@storybook/react";
-import {CalendarSchedule} from "components";
 import {useState} from "react";
 import moment from "moment";
+import {CalendarSchedule} from "./CalendarSchedule";
 
 export default {
     title: "Example/CalendarSchedule",

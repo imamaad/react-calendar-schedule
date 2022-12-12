@@ -1,1 +1,1 @@
-export {CalendarScheduleItem} from "components/CalendarScheduleItem/CalendarScheduleItem";
+export {CalendarScheduleItem} from "./CalendarScheduleItem";

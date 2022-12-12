@@ -2,8 +2,8 @@ import React from "react";
 import moment from "moment/moment";
 import {CalendarScheduleDates} from "../CalendarScheduleDates/CalendarScheduleDates";
 import {CalendarScheduleContainerGrid} from "../CalendarScheduleContainerGrid/CalendarScheduleContainerGrid";
-import {ColumnsInterface} from "common/interfaces/ColumnInterface";
-import {DataSourceInterface} from "common/interfaces/dataSourceItemInterface";
+import { ColumnsInterface } from "../../common/interfaces";
+import {DataSourceInterface} from "../../common/interfaces";
 
 export interface CalendarScheduleContainerInterface extends ColumnsInterface, DataSourceInterface {
     refContent: React.LegacyRef<HTMLDivElement>,

@@ -1,2 +1,2 @@
-export {DataSourceItemInterface} from "common/interfaces/dataSourceItemInterface";
-export {ColumnInterface} from "common/interfaces/ColumnInterface";
+export {ColumnInterface, ColumnsInterface} from "./ColumnInterface";
+export {DataSourceInterface, DataSourceItemInterface} from "./dataSourceItemInterface";
