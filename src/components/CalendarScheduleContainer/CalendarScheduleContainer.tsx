@@ -2,8 +2,11 @@ import React from "react";
 import moment from "moment/moment";
 import {CalendarScheduleDates} from "../CalendarScheduleDates/CalendarScheduleDates";
 import {CalendarScheduleContainerGrid} from "../CalendarScheduleContainerGrid/CalendarScheduleContainerGrid";
+import {RenderItemCell} from "common/interfaces/RenderItemCell";
+import {ColumnsInterface} from "common/interfaces/ColumnInterface";
+import {DataSourceInterface} from "common/interfaces/dataSourceItemInterface";
 
-export interface CalendarScheduleContainerInterface {
+export interface CalendarScheduleContainerInterface extends ColumnsInterface, RenderItemCell, DataSourceInterface {
     refContent: React.LegacyRef<HTMLDivElement>,
     refListDates: React.LegacyRef<HTMLDivElement>,
     refTodayHeader: React.LegacyRef<HTMLDivElement>,
@@ -11,9 +14,6 @@ export interface CalendarScheduleContainerInterface {
     calendar: Array<string | moment.Moment>,
     width?: string | number,
     height?: string | number,
-    columns: Array<any>,
-    dataSource: Array<any>,
-    renderItemCell: (item?: any, index?: number) => React.ReactNode | string,
     contentEvents?: {
         onScroll: React.UIEventHandler<HTMLDivElement> | undefined
         onMouseDown: React.UIEventHandler<HTMLDivElement> | undefined
@@ -38,7 +38,7 @@ export const CalendarScheduleContainer = (props: CalendarScheduleContainerInterf
         refBoxData,
         columns,
         dataSource,
-        renderItemCell
+        renderItem
     } = props;
 
     return (
@@ -54,7 +54,7 @@ export const CalendarScheduleContainer = (props: CalendarScheduleContainerInterf
                 calendar={calendar}
                 width={width}
                 height={height}
-                renderItemCell={renderItemCell}
+                renderItem={renderItem}
                 refBoxData={refBoxData}
                 columns={columns}
                 dataSource={dataSource}

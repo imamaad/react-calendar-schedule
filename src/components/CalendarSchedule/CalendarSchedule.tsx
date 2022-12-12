@@ -5,22 +5,30 @@ import {buildCalendar} from "./buildCalendar";
 import {CalendarScheduleSider} from "../CalendarScheduleSider/CalendarScheduleSider";
 import {CalendarScheduleContainer} from "../CalendarScheduleContainer/CalendarScheduleContainer";
 import _ from "lodash";
-import {ColumnInterface} from "common/interfaces";
+import {RenderItemCell} from "common/interfaces/RenderItemCell";
+import {ColumnsInterface} from "common/interfaces/ColumnInterface";
+import {DataSourceInterface, DataSourceItemInterface} from "common/interfaces/dataSourceItemInterface";
 
 import "./calendar-schedule.scss";
+import {CalendarScheduleItem} from "components/CalendarScheduleItem";
 
-export interface CalendarScheduleInterface {
+export interface CalendarScheduleInterface extends ColumnsInterface, RenderItemCell, DataSourceInterface {
     startDate: string,
     titleColumns: string,
-    columns: Array<ColumnInterface>,
     changeStartDate: (value: any) => void,
     size: { width: number, height: number },
-    dataSource: Array<any>,
-    renderItemCell: (item?: any, index?: number) => React.ReactNode | string,
 }
 
 export const CalendarSchedule = (props: CalendarScheduleInterface) => {
-    const {startDate, titleColumns = "", columns = [], changeStartDate, size, dataSource, renderItemCell} = props;
+    const {
+        startDate,
+        titleColumns = "",
+        columns = [],
+        changeStartDate,
+        size,
+        dataSource,
+        renderItem = (item: DataSourceItemInterface, index) => <CalendarScheduleItem item={item} key={index}/>
+    } = props;
 
     const [calendar, setCalendar] = useState<Array<any>>([]);
     const refSide = useRef<any>(null);
@@ -200,7 +208,7 @@ export const CalendarSchedule = (props: CalendarScheduleInterface) => {
                 refBoxData={refBoxData}
                 columns={columns}
                 dataSource={dataSource}
-                renderItemCell={renderItemCell}
+                renderItem={renderItem}
                 contentEvents={{
                     onScroll: onScroll,
                     onMouseDown: mouseDown,

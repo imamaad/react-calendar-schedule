@@ -24,7 +24,6 @@ const Template: ComponentStory<typeof CalendarSchedule> = (args) => {
                 {...args}
                 startDate={date}
                 changeStartDate={handleChangeStartDate}
-                renderItemCell={(item, index) => <div key={index}>{item.title}</div>}
             />
         </div>
     )
@@ -41,13 +40,34 @@ TestOne.args = {
     dataSource: [
         {
             column: 'CRJ200',
-            date: '2022-12-05T12:47:13+03:30',
-            title: 'test 1'
+            date: moment(),
+            children: 'test 1',
+            style: {
+                backgroundColor: 'blue',
+                color: '#fff',
+                textAlign: 'center',
+                borderRadius: 12,
+                padding: '4px 0',
+                marginBottom: 4
+            }
+        },
+        {
+            column: 'CRJ200',
+            date: moment(),
+            children: 'test 2',
+            style: {
+                backgroundColor: 'blue',
+                color: '#fff',
+                textAlign: 'center',
+                borderRadius: 12,
+                padding: '4px 0',
+                marginBottom: 4
+            }
         },
         {
             column: 'CRJ300',
-            date: '2022-12-05T12:47:13+03:30',
-            title: 'test 2'
+            date: moment(),
+            children: 'test 3'
         }
     ],
 };
