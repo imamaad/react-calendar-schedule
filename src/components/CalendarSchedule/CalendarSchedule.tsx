@@ -98,7 +98,6 @@ export const CalendarSchedule = (props: CalendarScheduleInterface) => {
         setSelectMove(false);
         refCalendar.current.classList.remove('select-for-scroll');
         appendDays();
-        setTransformXBoxData(getTranslateX(refBoxData.current));
     };
 
     const mouseDown = (event: any) => {
