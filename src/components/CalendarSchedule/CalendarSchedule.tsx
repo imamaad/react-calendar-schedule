@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useMemo, useRef, useState} from "react";
 import moment from "moment";
 import {buildCalendar} from "./buildCalendar";
 import {CalendarScheduleSider} from "../CalendarScheduleSider/CalendarScheduleSider";
@@ -40,7 +40,7 @@ export const CalendarSchedule = (props: CalendarScheduleInterface) => {
     const [lengthItemCalendar, setLengthItemCalendar] = useState(0);
     const [transformXBoxData, setTransformXBoxData] = useState(0);
     const [directionDrag, setDirectionDrag] = useState("RIGHT");
-
+    const widthItem = useMemo(() => size.width + 2, [size.width]);
 
     const getDays = (day: any, length: any, direction: any = directionDrag) => {
         const next = direction === "RIGHT";
@@ -49,14 +49,26 @@ export const CalendarSchedule = (props: CalendarScheduleInterface) => {
 
     useEffect(() => {
         if (widthScrollBar) {
-            setLengthItemCalendar((Math.ceil(widthScrollBar / size.width) + 1));
+            setLengthItemCalendar((Math.ceil(widthScrollBar / widthItem) + 1));
         }
         // eslint-disable-next-line
     }, [widthScrollBar]);
 
     useEffect(() => {
-        if (!moment(startDate).isSame(_.first(calendar))) {
-            setCalendar(getDays(moment(startDate), lengthItemCalendar, "RIGHT"));
+        const selectedStartDate = getStartDate().selectedDate;
+        if (!selectedStartDate || !moment(startDate).isSame(selectedStartDate, 'date')) {
+            const templateCalender = getDays(moment(startDate), lengthItemCalendar);
+            setCalendar(templateCalender);
+
+            let translateXBoxSize = 0;
+            if (selectedStartDate) {
+                translateXBoxSize = (((lengthItemCalendar * widthItem) + getStartDate().widthRemains) * -1);
+            } else {
+                translateXBoxSize = (lengthItemCalendar * widthItem) * -1;
+            }
+
+            changeTranslateXBoxData(translateXBoxSize);
+            setTransformXBoxData(translateXBoxSize);
         }
         // eslint-disable-next-line
     }, [lengthItemCalendar, startDate]);
@@ -124,49 +136,73 @@ export const CalendarSchedule = (props: CalendarScheduleInterface) => {
 
     const appendDays = () => {
         const translateX = getTranslateX(refBoxData.current);
-        const lengthAppend = Math.ceil(Math.abs(translateX) / size.width);
+
+        const lengthAppend = Math.ceil(lengthItemCalendar);
+
         if (lengthAppend > 0 && translateX !== transformXBoxData) {
             switch (directionDrag) {
                 case "RIGHT":
-                    changeStartDate(appendDaysRight(lengthAppend - 1));
+                    changeStartDate(appendDaysRight());
                     break;
                 case "LEFT":
-                    changeStartDate(appendDaysLeft(lengthAppend));
+                    changeStartDate(appendDaysLeft());
                     break;
                 default:
             }
         }
     };
 
-    const appendDaysRight = (length: any) => {
+    const getStartDate = () => {
         const translateX = getTranslateX(refBoxData.current);
-        const validLength = Math.ceil((refCalendar.current.clientWidth + Math.abs(translateX)) / size.width);
-        const isValidAddDay = validLength > calendar.length;
-        const isValidDropDay = (lengthItemCalendar - length < calendar.length && isValidAddDay);
-        const day = _.last(calendar).clone().add(1, 'day');
-        const days = getDays(day, isValidAddDay ? length : 0);
-        const dropDays = _.drop(calendar, isValidDropDay ? length : 0);
-        const resultCalendar = dropDays.concat(days);
 
-        if (isValidDropDay)
-            changeTranslateXBoxData(translateX + (length * size.width));
+        const widthMore = refBoxData.current.offsetWidth - refCalendar.current.clientWidth - (translateX * -1);
+        const widthPrv = refBoxData.current.offsetWidth - (refCalendar.current.clientWidth + widthMore);
+        const indexFirstDate = Math.floor(widthPrv / widthItem);
+        const widthContentPlusMore = refCalendar.current.clientWidth + widthMore;
 
         /*Return First Date*/
-        return moment(_.first(resultCalendar)).utc().format();
+        return {
+            selectedDate: calendar?.[indexFirstDate] && moment(calendar?.[indexFirstDate]),
+            widthContentPlusMore,
+            widthRemains: widthPrv % widthItem
+        };
+    }
+
+    const appendDaysRight = () => {
+        const translateX = getTranslateX(refBoxData.current);
+
+        const widthMore = refBoxData.current.offsetWidth - refCalendar.current.clientWidth - (translateX * -1);
+        const widthPrv = refBoxData.current.offsetWidth - (refCalendar.current.clientWidth + widthMore);
+        const indexFirstDate = Math.floor(widthPrv / widthItem);
+        const lengthMore = Math.floor(widthMore / widthItem);
+        const firstDate = calendar?.[indexFirstDate];
+        if (lengthMore <= lengthItemCalendar) {
+            const templateCalender = getDays(firstDate.clone(), lengthItemCalendar, "RIGHT");
+            setCalendar(templateCalender);
+        }
+
+
+        /*Return First Date*/
+        return firstDate.clone().utc().format();
     };
 
-    const appendDaysLeft = (length: any) => {
+    const appendDaysLeft = () => {
         const translateX = getTranslateX(refBoxData.current);
-        const isValidAddDay = translateX > 0;
-        const isValidDropDay = (lengthItemCalendar - length < calendar.length && isValidAddDay);
-        const day = _.first(calendar).clone().subtract(1, "day");
-        const days = getDays(day, isValidAddDay ? length : 0);
-        const dropDays = _.dropRight(calendar, isValidDropDay ? length : 0);
-        const resultCalendar = days.concat(dropDays);
-        if (isValidAddDay)
-            changeTranslateXBoxData(translateX - (length * size.width));
 
-        return moment(_.first(resultCalendar)).utc().format();
+        const widthMore = refBoxData.current.offsetWidth - refCalendar.current.clientWidth - (translateX * -1);
+        const widthPrv = refBoxData.current.offsetWidth - (refCalendar.current.clientWidth + widthMore);
+        const indexFirstDate = Math.floor(widthPrv / widthItem);
+        const lengthPrv = Math.floor(widthPrv / widthItem);
+        const firstDate = calendar?.[indexFirstDate];
+
+        if (lengthPrv <= lengthItemCalendar) {
+            const templateCalender = getDays(firstDate.clone(), lengthItemCalendar, "RIGHT");
+            setCalendar(templateCalender);
+        }
+
+
+        /*Return First Date*/
+        return firstDate.clone().utc().format();
     };
 
     const changeTranslateXBoxData = (value: any) => {
