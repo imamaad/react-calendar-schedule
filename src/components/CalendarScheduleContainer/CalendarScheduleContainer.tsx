@@ -1,5 +1,5 @@
 import React from "react";
-import moment from "moment/moment";
+import moment, {Moment} from "moment/moment";
 import {CalendarScheduleDates} from "../CalendarScheduleDates/CalendarScheduleDates";
 import {CalendarScheduleContainerGrid} from "../CalendarScheduleContainerGrid/CalendarScheduleContainerGrid";
 import { ColumnsInterface } from "../../common/interfaces";
@@ -22,6 +22,12 @@ export interface CalendarScheduleContainerInterface extends ColumnsInterface, Da
         onTouchStart: React.UIEventHandler<HTMLDivElement> | undefined
         onTouchMove: React.UIEventHandler<HTMLDivElement> | undefined
         onTouchEnd: React.UIEventHandler<HTMLDivElement> | undefined
+    },
+    loading?: {
+        startDate: Moment,
+        endDate: Moment,
+        visible: boolean,
+        component: React.ReactNode
     }
 }
 
@@ -37,6 +43,7 @@ export const CalendarScheduleContainer = (props: CalendarScheduleContainerInterf
         refBoxData,
         columns,
         dataSource,
+        loading
     } = props;
 
     return (
@@ -56,6 +63,7 @@ export const CalendarScheduleContainer = (props: CalendarScheduleContainerInterf
                 columns={columns}
                 dataSource={dataSource}
                 refContent={refContent}
+                loading={loading}
                 contentEvents={{
                     onScroll: contentEvents?.onScroll,
                     onMouseDown: contentEvents?.onMouseDown,

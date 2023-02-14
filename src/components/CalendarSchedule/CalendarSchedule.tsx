@@ -1,5 +1,5 @@
 import React, {useEffect, useMemo, useRef, useState} from "react";
-import moment from "moment";
+import moment, {Moment} from "moment";
 import {buildCalendar} from "./buildCalendar";
 import {CalendarScheduleSider} from "../CalendarScheduleSider/CalendarScheduleSider";
 import {CalendarScheduleContainer} from "../CalendarScheduleContainer/CalendarScheduleContainer";
@@ -16,6 +16,12 @@ export interface CalendarScheduleInterface extends ColumnsInterface, DataSourceI
     titleColumns: string,
     changeStartDate: (value: any) => void,
     size: { width: number, height: number },
+    loading?: {
+        startDate: Moment,
+        endDate: Moment,
+        visible: boolean,
+        component: React.ReactNode
+    }
 }
 
 export const CalendarSchedule = (props: CalendarScheduleInterface) => {
@@ -26,6 +32,7 @@ export const CalendarSchedule = (props: CalendarScheduleInterface) => {
         changeStartDate,
         size,
         dataSource,
+        loading
     } = props;
 
     const [calendar, setCalendar] = useState<Array<any>>([]);
@@ -241,6 +248,7 @@ export const CalendarSchedule = (props: CalendarScheduleInterface) => {
                 refBoxData={refBoxData}
                 columns={columns}
                 dataSource={dataSource}
+                loading={loading}
                 contentEvents={{
                     onScroll: onScroll,
                     onMouseDown: mouseDown,

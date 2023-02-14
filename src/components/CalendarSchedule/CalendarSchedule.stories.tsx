@@ -73,4 +73,10 @@ TestOne.args = {
             children: 'test 3'
         }
     ],
+    loading: {
+        startDate:  moment()?.subtract(1, 'month'),
+        endDate: moment()?.add(1, 'month'),
+        visible: true,
+        component: (<div>Loading...</div>)
+    }
 };
