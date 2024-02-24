@@ -3,7 +3,6 @@ import moment, {Moment} from "moment";
 import {buildCalendar} from "./buildCalendar";
 import {CalendarScheduleSider} from "../CalendarScheduleSider/CalendarScheduleSider";
 import {CalendarScheduleContainer} from "../CalendarScheduleContainer/CalendarScheduleContainer";
-import _ from "lodash";
 import {ColumnsInterface} from "../../common/interfaces";
 import {DataSourceInterface} from "../../common/interfaces";
 import {useWindowSize} from "../../hooks";
@@ -239,13 +238,13 @@ export const CalendarSchedule = (props: CalendarScheduleInterface) => {
     return (
         <div className='calendar-grid-table calendar-ops'>
             <div className='calendar-header-root'>
-                <div className='box-title-items-calendar-scheduler-horizontal' style={{width: 180}}>
+                <div className='box-title-items-calendar-scheduler-horizontal' style={{width: size.width}}>
                     {titleColumns}
                 </div>
                 <CalendarScheduleDates
                     refListDates={refBoxDays}
                     calendar={calendar}
-                    width={180}
+                    width={size.width}
                     refTodayHeader={refTodayHeader}
                 />
             </div>
@@ -254,7 +253,7 @@ export const CalendarSchedule = (props: CalendarScheduleInterface) => {
             <div className='calendar-body-root'>
                 <CalendarScheduleSider
                     columns={columns}
-                    width={180}
+                    width={size.width}
                     refListGroup={refSide}
                 />
                 <CalendarScheduleContainer
@@ -266,6 +265,8 @@ export const CalendarSchedule = (props: CalendarScheduleInterface) => {
                     columns={columns}
                     dataSource={dataSource}
                     loading={loading}
+                    width={size.width}
+                    height={size.height}
                     contentEvents={{
                         onScroll: onScroll,
                         onMouseDown: mouseDown,

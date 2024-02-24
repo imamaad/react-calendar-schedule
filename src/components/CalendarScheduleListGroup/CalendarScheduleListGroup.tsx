@@ -5,13 +5,13 @@ import {ColumnInterface} from "../../common/interfaces";
 
 export interface CalendarScheduleListGroupInterface {
     width?: string | number
-    heightItemGroup?: string | number,
+    height?: string | number,
     columns: Array<ColumnInterface>
     refListGroup: any
 }
 
 export const CalendarScheduleListGroup = (props: CalendarScheduleListGroupInterface) => {
-    const {width = 180, heightItemGroup = 180, columns, refListGroup} = props;
+    const {width , height , columns, refListGroup} = props;
 
     return (
         <div className='list-titles-calendar-scheduler-horizontal' style={{width}} ref={refListGroup}>
@@ -20,7 +20,7 @@ export const CalendarScheduleListGroup = (props: CalendarScheduleListGroupInterf
                     title={item.title}
                     subTitle={item.subTitle}
                     key={index}
-                    height={heightItemGroup}
+                    height={height}
                     width={width}
                 />
             )}

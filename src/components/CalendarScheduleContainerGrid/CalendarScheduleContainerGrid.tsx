@@ -8,8 +8,8 @@ export interface CalendarScheduleContainerGridInterface extends ColumnsInterface
     refContent: React.LegacyRef<HTMLDivElement>,
     refBoxData: React.LegacyRef<HTMLDivElement>,
     calendar: Array<string | Moment>,
-    width?: string | number,
-    height?: string | number,
+    width: string | number,
+    height: string | number,
     loading?: {
         startDate: Moment,
         endDate: Moment,
@@ -35,8 +35,8 @@ export const CalendarScheduleContainerGrid = (props: CalendarScheduleContainerGr
         calendar,
         refBoxData,
         columns,
-        width = 180,
-        height = 180,
+        width ,
+        height ,
         dataSource,
         loading
     } = props;

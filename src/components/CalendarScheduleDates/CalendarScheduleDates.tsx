@@ -14,7 +14,7 @@ export const CalendarScheduleDates = (props: CalendarScheduleDatesInterface) => 
     return (
         <div
             className='box-header-calendar-scheduler-horizontal'
-            style={{width: `calc(100% - ${180}px)`}}
+            style={{width: `calc(100% - ${width}px)`}}
             ref={refListDates}
         >
             {calendar.map((day, index) =>

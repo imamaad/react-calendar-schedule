@@ -8,7 +8,7 @@ export interface CalendarScheduleItemGroupInterface {
 }
 
 export const CalendarScheduleItemGroup = (props: CalendarScheduleItemGroupInterface) => {
-    const {title, subTitle, width = 180, height = 180} = props;
+    const {title, subTitle, width , height } = props;
 
     return (
         <div

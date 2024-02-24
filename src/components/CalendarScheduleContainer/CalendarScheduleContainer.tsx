@@ -11,8 +11,8 @@ export interface CalendarScheduleContainerInterface extends ColumnsInterface, Da
     refTodayHeader: React.LegacyRef<HTMLDivElement>,
     refBoxData: React.LegacyRef<HTMLDivElement>,
     calendar: Array<string | moment.Moment>,
-    width?: string | number,
-    height?: string | number,
+    width: string | number,
+    height: string | number,
     contentEvents?: {
         onScroll: React.UIEventHandler<HTMLDivElement> | undefined
         onMouseDown: React.UIEventHandler<HTMLDivElement> | undefined
@@ -35,8 +35,8 @@ export const CalendarScheduleContainer = (props: CalendarScheduleContainerInterf
     const {
         refContent,
         calendar,
-        width = 180,
-        height = 180,
+        width ,
+        height ,
         refListDates,
         refTodayHeader,
         contentEvents,

@@ -8,8 +8,8 @@ import {Moment} from "moment";
 
 export interface CalendarScheduleColumnsInterface extends ColumnsInterface, DataSourceInterface {
     date: string | Moment,
-    width?: string | number,
-    height?: string | number,
+    width: string | number,
+    height: string | number,
     loading?: {
         startDate: Moment,
         endDate: Moment,
@@ -20,7 +20,7 @@ export interface CalendarScheduleColumnsInterface extends ColumnsInterface, Data
 
 export const CalendarScheduleColumns = (props: CalendarScheduleColumnsInterface) => {
 
-    const {date, columns, width = 180, height = 180, dataSource, loading} = props;
+    const {date, columns, width , height , dataSource, loading} = props;
 
     const thisDay = useMemo(() => moment(date), [date]);
 
