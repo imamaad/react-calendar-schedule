@@ -1,19 +1,33 @@
 .calendar-ops {
+  //display: flex;
+  //position: absolute;
+  //top: 0;
+  //bottom: 0;
+  //left: 0;
+  //right: 0;
+  border: 1px solid #cbcbcb;
+}
+
+.calendar-header-root {
+  display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  overflow: hidden;
+
+}
+
+.calendar-body-root {
   display: flex;
   overflow: hidden;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  border: 1px solid #cbcbcb;
 }
 
 .box-left-titles-calendar-scheduler-horizontal {
   //min-width: 150px;
   display: flex;
   flex-direction: column;
-  border: 1px solid #cbcbcb;
+  //border: 1px solid #cbcbcb;
+  box-sizing: border-box;
 }
 
 .box-header-calendar-scheduler-horizontal {
@@ -34,11 +48,12 @@
   overflow: hidden;
 
   .box-item-title-calendar-scheduler-horizontal {
-    border-bottom: 1px solid #cbcbcb;
+    border: 1px solid #cbcbcb;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    box-sizing: border-box;
   }
 }
 
@@ -70,6 +85,7 @@
   border: 1px solid #cbcbcb;
   text-align: center;
   background-color: #f5f5f5;
+  box-sizing: border-box;
 
   &:first-child {
     //margin-left: 150px;
@@ -96,6 +112,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
 
     .box-list-items-calendar-scheduler {
       width: 100%;

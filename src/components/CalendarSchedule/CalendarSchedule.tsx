@@ -9,6 +9,7 @@ import {DataSourceInterface} from "../../common/interfaces";
 import {useWindowSize} from "../../hooks";
 
 import "./calendar-schedule.scss";
+import {CalendarScheduleDates} from "../CalendarScheduleDates/CalendarScheduleDates";
 
 
 export interface CalendarScheduleInterface extends ColumnsInterface, DataSourceInterface {
@@ -212,8 +213,11 @@ export const CalendarSchedule = (props: CalendarScheduleInterface) => {
     };
 
     const changeTranslateXBoxData = (value: any) => {
-        refBoxData.current.style.transform = `translateX(${value}px)`;
-        refBoxDays.current.style.transform = `translateX(${value}px)`;
+        if (refBoxData.current)
+            refBoxData.current.style.transform = `translateX(${value}px)`;
+
+        if (refBoxDays.current)
+            refBoxDays.current.style.transform = `translateX(${value}px)`;
     };
 
     const getTranslateX = (element: any) => {
@@ -234,32 +238,46 @@ export const CalendarSchedule = (props: CalendarScheduleInterface) => {
 
     return (
         <div className='calendar-grid-table calendar-ops'>
-            <CalendarScheduleSider
-                columns={columns}
-                width={180}
-                title={titleColumns}
-                refListGroup={refSide}
-            />
-            <CalendarScheduleContainer
-                refContent={refCalendar}
-                calendar={calendar}
-                refListDates={refBoxDays}
-                refTodayHeader={refTodayHeader}
-                refBoxData={refBoxData}
-                columns={columns}
-                dataSource={dataSource}
-                loading={loading}
-                contentEvents={{
-                    onScroll: onScroll,
-                    onMouseDown: mouseDown,
-                    onMouseLeave: mouseOut,
-                    onMouseMove: mouseMove,
-                    onMouseUp: mouseUp,
-                    onTouchStart: touchStart,
-                    onTouchMove: touchMove,
-                    onTouchEnd: touchEnd,
-                }}
-            />
+            <div className='calendar-header-root'>
+                <div className='box-title-items-calendar-scheduler-horizontal' style={{width: 180}}>
+                    {titleColumns}
+                </div>
+                <CalendarScheduleDates
+                    refListDates={refBoxDays}
+                    calendar={calendar}
+                    width={180}
+                    refTodayHeader={refTodayHeader}
+                />
+            </div>
+
+
+            <div className='calendar-body-root'>
+                <CalendarScheduleSider
+                    columns={columns}
+                    width={180}
+                    refListGroup={refSide}
+                />
+                <CalendarScheduleContainer
+                    refContent={refCalendar}
+                    calendar={calendar}
+                    refListDates={refBoxDays}
+                    refTodayHeader={refTodayHeader}
+                    refBoxData={refBoxData}
+                    columns={columns}
+                    dataSource={dataSource}
+                    loading={loading}
+                    contentEvents={{
+                        onScroll: onScroll,
+                        onMouseDown: mouseDown,
+                        onMouseLeave: mouseOut,
+                        onMouseMove: mouseMove,
+                        onMouseUp: mouseUp,
+                        onTouchStart: touchStart,
+                        onTouchMove: touchMove,
+                        onTouchEnd: touchEnd,
+                    }}
+                />
+            </div>
         </div>
     )
 }

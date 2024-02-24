@@ -19,7 +19,9 @@ const Template: ComponentStory<typeof CalendarSchedule> = (args) => {
     }
 
     return (
-        <div style={{height: '100vh'}}>
+        <div
+            style={{height: '100vh', position: 'relative', overflow: 'auto'}}
+        >
             <CalendarSchedule
                 {...args}
                 startDate={date}
@@ -35,6 +37,9 @@ TestOne.args = {
     size: {width: 180, height: 180},
     columns: [
         {accessorKey: 'CRJ200', title: "CRJ 200", placeholderCell: 'p 1'},
+        {accessorKey: 'CRJ300', title: "CRJ 300", placeholderCell: 'p 2'},
+        {accessorKey: 'CRJ300', title: "CRJ 300", placeholderCell: 'p 2'},
+        {accessorKey: 'CRJ300', title: "CRJ 300", placeholderCell: 'p 2'},
         {accessorKey: 'CRJ300', title: "CRJ 300", placeholderCell: 'p 2'},
         // {accessorKey: 'CRJ300', title: "CRJ 400", placeholderCell: 'p 2'},
         // {accessorKey: 'CRJ300', title: "CRJ 500", placeholderCell: 'p 2'},
@@ -74,7 +79,7 @@ TestOne.args = {
         }
     ],
     loading: {
-        startDate:  moment()?.subtract(1, 'month'),
+        startDate: moment()?.subtract(1, 'month'),
         endDate: moment()?.add(1, 'month'),
         visible: true,
         component: (<div>Loading...</div>)

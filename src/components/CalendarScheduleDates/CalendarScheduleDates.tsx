@@ -12,7 +12,11 @@ export interface CalendarScheduleDatesInterface {
 export const CalendarScheduleDates = (props: CalendarScheduleDatesInterface) => {
     const {refListDates, calendar, width, refTodayHeader} = props;
     return (
-        <div className='box-header-calendar-scheduler-horizontal' ref={refListDates}>
+        <div
+            className='box-header-calendar-scheduler-horizontal'
+            style={{width: `calc(100% - ${180}px)`}}
+            ref={refListDates}
+        >
             {calendar.map((day, index) =>
                 <div
                     className={`box-title-day-calendar-scheduler-horizontal ${dayClasses(day)}`}

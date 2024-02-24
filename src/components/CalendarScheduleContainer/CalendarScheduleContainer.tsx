@@ -48,13 +48,6 @@ export const CalendarScheduleContainer = (props: CalendarScheduleContainerInterf
 
     return (
         <div className="flex-1 d-flex flex-direction-column" style={{width: '1%'}}>
-            <CalendarScheduleDates
-                refListDates={refListDates}
-                calendar={calendar}
-                width={width}
-                refTodayHeader={refTodayHeader}
-            />
-
             <CalendarScheduleContainerGrid
                 calendar={calendar}
                 width={width}
