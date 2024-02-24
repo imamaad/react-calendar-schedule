@@ -33,8 +33,15 @@ const Template: ComponentStory<typeof CalendarSchedule> = (args) => {
 
 export const TestOne = Template.bind({});
 TestOne.args = {
-    titleColumns: 'Aircraft',
-    size: {width: 180, height: 180},
+    bgColorHeader: '#e2eaf3',
+    format: {
+        top: 'YYYY',
+        bottom: 'D MMM ddd',
+    },
+    titleColumns: (
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>Aircraft 2</div>
+    ),
+    size: {width: 230, height: 180},
     columns: [
         {accessorKey: 'CRJ200', title: "CRJ 200", placeholderCell: 'p 1'},
         {accessorKey: 'CRJ300', title: "CRJ 300", placeholderCell: 'p 2'},

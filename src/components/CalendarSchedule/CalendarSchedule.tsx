@@ -12,10 +12,20 @@ import {CalendarScheduleDates} from "../CalendarScheduleDates/CalendarScheduleDa
 
 
 export interface CalendarScheduleInterface extends ColumnsInterface, DataSourceInterface {
+    bgColorHeader: string,
+    format?: {
+        top?: string,
+        bottom?: string,
+    },
+    minDate?: string,
+    maxDate?: string,
     startDate: string,
-    titleColumns: string,
+    titleColumns: string | React.ReactNode,
     changeStartDate: (value: any) => void,
-    size: { width: number, height: number },
+    size: {
+        width: number,
+        height: number
+    },
     loading?: {
         startDate: Moment,
         endDate: Moment,
@@ -26,6 +36,8 @@ export interface CalendarScheduleInterface extends ColumnsInterface, DataSourceI
 
 export const CalendarSchedule = (props: CalendarScheduleInterface) => {
     const {
+        bgColorHeader,
+        format,
         startDate,
         titleColumns = "",
         columns = [],
@@ -238,14 +250,19 @@ export const CalendarSchedule = (props: CalendarScheduleInterface) => {
     return (
         <div className='calendar-grid-table calendar-ops'>
             <div className='calendar-header-root'>
-                <div className='box-title-items-calendar-scheduler-horizontal' style={{width: size.width}}>
+                <div
+                    className='box-title-items-calendar-scheduler-horizontal'
+                    style={{width: size.width, backgroundColor: bgColorHeader}}
+                >
                     {titleColumns}
                 </div>
                 <CalendarScheduleDates
+                    bgColorHeader={bgColorHeader}
                     refListDates={refBoxDays}
                     calendar={calendar}
                     width={size.width}
                     refTodayHeader={refTodayHeader}
+                    format={format}
                 />
             </div>
 

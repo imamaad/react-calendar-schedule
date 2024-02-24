@@ -7,6 +7,7 @@ describe("CalendarSchedule", () => {
         render(
             <CalendarSchedule
                 size={{width: 180, height: 180}}
+                bgColorHeader={'red'}
                 columns={[]}
                 dataSource={[]}
                 startDate={'2020-10-10'}
