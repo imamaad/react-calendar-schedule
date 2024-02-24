@@ -254,6 +254,7 @@ export const CalendarSchedule = (props: CalendarScheduleInterface) => {
                 <CalendarScheduleSider
                     columns={columns}
                     width={size.width}
+                    height={size.height}
                     refListGroup={refSide}
                 />
                 <CalendarScheduleContainer

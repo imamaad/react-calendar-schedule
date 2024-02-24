@@ -3,8 +3,8 @@ import React from "react";
 import {ColumnInterface} from "../../common/interfaces";
 
 export interface CalendarScheduleSiderInterface {
-    width?: string | number,
-    height?: string | number,
+    width: string | number,
+    height: string | number,
     refListGroup: React.LegacyRef<HTMLDivElement>,
     columns: Array<ColumnInterface>
 }
