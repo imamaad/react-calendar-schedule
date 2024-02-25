@@ -1,6 +1,6 @@
 {
   "name": "react-calendar-schedule",
-  "version": "0.1.0-beta.20",
+  "version": "0.1.0-beta.21",
   "description": "A modern and responsive react calendar schedule component.",
   "author": "mohammad hossine rezazadeh <imamaad.ir@gmail.com>",
   "license": "MIT",
@@ -21,10 +21,9 @@
     "build": "rollup -c",
     "dev": "rollup -c --watch",
     "test": "jest",
-    "storybook": "start-storybook -p 6006",
-    "start": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
-
+    "storybook": "storybook dev -p 6006",
+    "start": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
@@ -34,15 +33,15 @@
     "@rollup/plugin-commonjs": "^23.0.3",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-typescript": "^10.0.1",
-    "@storybook/addon-actions": "^6.5.14",
-    "@storybook/addon-essentials": "^6.5.14",
-    "@storybook/addon-interactions": "^6.5.14",
-    "@storybook/addon-links": "^6.5.14",
-    "@storybook/builder-webpack5": "^6.5.14",
-    "@storybook/manager-webpack5": "^6.5.14",
+    "@storybook/addon-essentials": "^7.6.17",
+    "@storybook/addon-interactions": "^7.6.17",
+    "@storybook/addon-links": "^7.6.17",
+    "@storybook/addon-onboarding": "^1.0.11",
+    "@storybook/blocks": "^7.6.17",
     "@storybook/preset-scss": "^1.0.3",
-    "@storybook/react": "^6.5.14",
-    "@storybook/testing-library": "^0.0.13",
+    "@storybook/react": "^7.6.17",
+    "@storybook/react-webpack5": "^7.6.17",
+    "@storybook/test": "^7.6.17",
     "@testing-library/react": "^13.4.0",
     "@types/jest": "^29.2.3",
     "@types/react": "^18.0.25",
@@ -65,6 +64,7 @@
     "rollup-plugin-scss": "^4.0.0",
     "sass": "^1.56.1",
     "sass-loader": "^13.2.0",
+    "storybook": "^7.6.17",
     "style-loader": "^3.3.1",
     "tslib": "^2.4.1",
     "typescript": "^4.9.3"

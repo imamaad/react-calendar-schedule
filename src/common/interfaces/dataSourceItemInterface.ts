@@ -11,3 +11,15 @@ export interface DataSourceItemInterface {
 export interface DataSourceInterface {
     dataSource: Array<DataSourceItemInterface>
 }
+
+
+export interface RangeDataSourceItemInterface {
+    column: string,
+    date: string,
+    style?: CSSProperties | undefined,
+    children: React.ReactNode,
+}
+
+export interface RangeDataSourceInterface {
+    dataSource: Array<RangeDataSourceItemInterface>
+}
