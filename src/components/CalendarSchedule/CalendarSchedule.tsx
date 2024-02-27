@@ -1,14 +1,14 @@
 import React, {useEffect, useMemo, useRef, useState} from "react";
 import moment, {Moment} from "moment";
 import {buildCalendar} from "./buildCalendar";
-import {CalendarScheduleSider} from "../CalendarScheduleSider/CalendarScheduleSider";
-import {CalendarScheduleContainer} from "../CalendarScheduleContainer/CalendarScheduleContainer";
+import {CalendarScheduleSider} from "./CalendarScheduleSider/CalendarScheduleSider";
+import {CalendarScheduleContainer} from "./CalendarScheduleContainer/CalendarScheduleContainer";
+import {CalendarScheduleDates} from "./CalendarScheduleDates/CalendarScheduleDates";
 import {ColumnsInterface} from "../../common/interfaces";
 import {DataSourceInterface} from "../../common/interfaces";
 import {useWindowSize} from "../../hooks";
 
 import "./calendar-schedule.scss";
-import {CalendarScheduleDates} from "../CalendarScheduleDates/CalendarScheduleDates";
 
 
 export interface CalendarScheduleInterface extends ColumnsInterface, DataSourceInterface {
@@ -59,7 +59,7 @@ export const CalendarSchedule = (props: CalendarScheduleInterface) => {
     const [lengthItemCalendar, setLengthItemCalendar] = useState(0);
     const [transformXBoxData, setTransformXBoxData] = useState(0);
     const [directionDrag, setDirectionDrag] = useState("RIGHT");
-    const widthItem = useMemo(() => size.width + 2, [size.width]);
+    const widthItem = useMemo(() => size.width, [size.width]);
 
     const getDays = (day: any, length: any, direction: any = directionDrag) => {
         const next = direction === "RIGHT";
@@ -252,7 +252,14 @@ export const CalendarSchedule = (props: CalendarScheduleInterface) => {
             <div className='calendar-header-root'>
                 <div
                     className='box-title-items-calendar-scheduler-horizontal'
-                    style={{width: size.width, backgroundColor: bgColorHeader}}
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        height: '100%',
+                        width: size.width,
+                        backgroundColor: bgColorHeader
+                    }}
                 >
                     {titleColumns}
                 </div>

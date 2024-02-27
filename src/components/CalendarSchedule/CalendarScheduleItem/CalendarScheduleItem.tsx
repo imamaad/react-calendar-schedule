@@ -1,5 +1,5 @@
 import React from "react";
-import {DataSourceItemInterface} from "../../common/interfaces";
+import {DataSourceItemInterface} from "../../../common/interfaces";
 
 export const CalendarScheduleItem = ({item}: { item: DataSourceItemInterface }) => {
     return (

@@ -1,7 +1,7 @@
 import React, {useMemo} from "react";
 import _ from "lodash";
-import {ColumnInterface} from "../../common/interfaces";
-import {DataSourceInterface, DataSourceItemInterface} from "../../common/interfaces";
+import {ColumnInterface} from "../../../common/interfaces";
+import {DataSourceInterface, DataSourceItemInterface} from "../../../common/interfaces";
 import {CalendarScheduleItem} from "../CalendarScheduleItem";
 import moment, {Moment} from "moment";
 

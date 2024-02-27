@@ -1,7 +1,7 @@
 import React from "react";
 import _ from "lodash";
 import {CalendarScheduleItemGroup} from "../CalendarScheduleItemGroup/CalendarScheduleItemGroup";
-import {ColumnInterface} from "../../common/interfaces";
+import {ColumnInterface} from "../../../common/interfaces";
 
 export interface CalendarScheduleListGroupInterface {
     width?: string | number

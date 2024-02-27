@@ -13,7 +13,7 @@ describe("CalendarSchedule", () => {
                 startDate={'2020-10-10'}
                 changeStartDate={() => {
                 }}
-                titleColumns={'title'}
+                sidebarTitle={'title'}
             />
         );
     });

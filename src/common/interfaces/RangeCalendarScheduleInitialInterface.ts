@@ -3,17 +3,15 @@ import {RangeDataSourceInterface} from "./dataSourceItemInterface";
 import React from "react";
 
 export interface RangeCalendarScheduleInitialInterface extends RangeColumnsInterface, RangeDataSourceInterface {
+    minTime: string,
+    maxTime: string,
     sidebarWidth?: number,
+    sidebarTitle?: string | React.ReactNode,
     bgColorHeader: string,
     format?: {
         top?: string,
         bottom?: string,
     },
-    minDate?: string,
-    maxDate?: string,
-    startDate: string,
-    titleColumns: string | React.ReactNode,
-    changeStartDate: (value: any) => void,
     size: {
         width: number,
         height: number
