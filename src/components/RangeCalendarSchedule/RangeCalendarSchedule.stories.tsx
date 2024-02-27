@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {Meta, StoryObj} from "@storybook/react";
 import {RangeCalendarSchedule} from "./RangeCalendarSchedule";
+import moment from "moment";
 
 const meta: Meta<typeof RangeCalendarSchedule> = {
     /* 👇 The title prop is optional.
@@ -14,8 +15,8 @@ const meta: Meta<typeof RangeCalendarSchedule> = {
         layout: 'fullscreen',
     },
     args: {
-        minTime: '2024-02-27T16:07:11Z',
-        maxTime: '2024-03-10T16:07:11Z',
+        minTime: moment().utc().format(),
+        maxTime: moment().utc().add(7, 'day').format(),
         bgColorHeader: '#e2eaf3',
         format: {
             top: 'YYYY',
