@@ -10,9 +10,8 @@ describe("CalendarSchedule", () => {
                 bgColorHeader={'red'}
                 columns={[]}
                 dataSource={[]}
-                startDate={'2020-10-10'}
-                changeStartDate={() => {
-                }}
+                minTime={'2020-10-10'}
+                maxTime={'2020-10-20'}
                 sidebarTitle={'title'}
             />
         );
