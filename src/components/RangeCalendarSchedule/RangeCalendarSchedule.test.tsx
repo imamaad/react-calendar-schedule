@@ -2,7 +2,7 @@ import React from "react";
 import {render} from "@testing-library/react";
 import {RangeCalendarSchedule} from "./RangeCalendarSchedule";
 
-describe("CalendarSchedule", () => {
+describe("RangeCalendarSchedule", () => {
     test("renders the CalendarSchedule component", () => {
         render(
             <RangeCalendarSchedule
