@@ -29,7 +29,6 @@ export const RangeCalendarScheduleBodyVirtualized = ({category, categoryIndex}: 
                 categoryIndex={categoryIndex}
             />
             <RangeCalendarScheduleContainerVirtualized
-                dataSource={category.dataSource}
                 columns={category.columns}
                 categoryIndex={categoryIndex}
             />

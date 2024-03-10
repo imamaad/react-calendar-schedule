@@ -6,11 +6,11 @@ import {rangeVirtualizedDataSourceInterface} from "../../../common/interfaces/ra
 import _ from "lodash";
 import moment from "moment";
 
-interface props extends RangeVirtualizedColumnsInterface, rangeVirtualizedDataSourceInterface {
+interface props extends RangeVirtualizedColumnsInterface {
     categoryIndex: number,
 }
 
-export const RangeCalendarScheduleContainerVirtualized = ({columns, dataSource, categoryIndex}: props) => {
+export const RangeCalendarScheduleContainerVirtualized = ({columns, categoryIndex}: props) => {
 
     const {
         days,
@@ -51,8 +51,8 @@ export const RangeCalendarScheduleContainerVirtualized = ({columns, dataSource, 
                 overscanColumnCount={overScanColumnCount}
                 overscanRowCount={overScanRowCount}
                 cellRenderer={(props) => {
-                    const items = _.filter(dataSource, item => {
-                        return item.column === columns[props?.rowIndex].accessorKey && moment(days[props.columnIndex]).format('YYYY-MM-DD') === moment(item.date).format("YYYY-MM-DD")
+                    const items = _.filter(columns[props?.rowIndex]?.dataSource, item => {
+                        return moment(days[props.columnIndex]).format('YYYY-MM-DD') === moment(item.date).format("YYYY-MM-DD")
                     });
 
                     return _renderBodyCell({...props, items})

@@ -1,8 +1,9 @@
+import {rangeVirtualizedDataSourceItemInterface} from "./rangeVirtualizedDataSourceInterface";
+
 export interface RangeVirtualizedColumnInterface {
-    title: string,
-    subTitle?: string,
     accessorKey: string,
-    placeholderCell: string,
+
+    dataSource: Array<rangeVirtualizedDataSourceItemInterface>
 
     [propName: string]: any,
 }

@@ -8,7 +8,6 @@ import {
 export interface RangeVirtualizedCategoryInterface {
     title: string,
     columns: Array<RangeVirtualizedColumnInterface>,
-    dataSource: Array<rangeVirtualizedDataSourceItemInterface>
 }
 
 export interface RangeCalendarScheduleVirtualizedInitialInterface {
