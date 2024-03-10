@@ -15,8 +15,8 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
         layout: 'fullscreen',
     },
     args: {
-        startDate: moment().utc().format(),
-        endDate: moment().utc().add(30, 'day').format(),
+        startDate: moment().format(),
+        endDate: moment().add(30, 'day').format(),
         bgColorHeader: '#e2eaf3',
         textColorHeader: '#000',
         textColorSidebar: '#000',

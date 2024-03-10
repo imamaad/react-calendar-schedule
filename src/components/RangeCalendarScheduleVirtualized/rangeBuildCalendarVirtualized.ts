@@ -11,7 +11,7 @@ export const rangeBuildCalendarVirtualized = (sDate: string, eDate: string) => {
     let currentDate = startDay;
 
     while (currentDate < endDay) {
-        calendar.push(currentDate.utc().startOf('day').format());
+        calendar.push(currentDate.startOf('day').format());
         currentDate = currentDate.clone().add(1, 'day');
     }
 

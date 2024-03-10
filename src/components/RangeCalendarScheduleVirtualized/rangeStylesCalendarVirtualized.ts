@@ -1,11 +1,11 @@
 import moment from "moment";
 
 export const beforeToday = (day:moment.Moment | string) => {
-  return moment(day).utc().isBefore(moment().utc(), "day");
+  return moment(day).isBefore(moment(), "day");
 }
 
 export const isToday = (day:moment.Moment | string) => {
-  return moment(day).utc().isSame(moment().utc(), "day");
+  return moment(day).isSame(moment(), "day");
 }
 
 const dayClasses = (day:moment.Moment | string) => {
