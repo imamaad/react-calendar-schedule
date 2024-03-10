@@ -8,8 +8,6 @@ describe("RangeCalendarSchedule", () => {
             <RangeCalendarScheduleVirtualized
                 bgColorHeader={'red'}
                 textColorHeader={'black'}
-                columns={[]}
-                dataSource={[]}
                 headerHeight={48}
                 startDate={'2020-10-10'}
                 endDate={'2020-10-20'}

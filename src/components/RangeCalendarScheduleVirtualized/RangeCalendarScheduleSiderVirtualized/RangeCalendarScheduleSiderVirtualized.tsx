@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import {useRangeCalendarScheduleVirtualized} from "../RangeCalendarScheduleContextVirtualized";
 import {Grid} from "react-virtualized";
 import {RangeVirtualizedColumnsInterface} from "../../../common/interfaces/ColumnVirtualizedInterface";
@@ -20,10 +20,14 @@ export const RangeCalendarScheduleSiderVirtualized = ({columns, categoryIndex}: 
         sidebarWidth,
         bgColorSidebar,
         textColorSidebar,
+        headerHeight
     } = useRangeCalendarScheduleVirtualized();
+
+    const ref = useRef<any>(null);
 
     return (
         <div
+            ref={ref}
             className={"LeftSideGridContainer"}
             style={{
                 color: textColorSidebar,
@@ -45,7 +49,7 @@ export const RangeCalendarScheduleSiderVirtualized = ({columns, categoryIndex}: 
                 height={height}
                 rowHeight={rowHeight}
                 rowCount={getRowCount(columns)}
-                scrollTop={scrollTop - ((rowHeight + (getRowCount(columns) * rowHeight)) * categoryIndex)}
+                scrollTop={scrollTop - (ref?.current?.offsetTop || 0)}
                 width={sidebarWidth}
             />
         </div>

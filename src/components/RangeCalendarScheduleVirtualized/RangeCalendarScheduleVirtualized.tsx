@@ -34,6 +34,10 @@ export const RangeCalendarScheduleVirtualized: React.FC<RangeCalendarScheduleVir
                                         height,
                                         scrollLeft,
                                         scrollTop,
+                                        scrollHeight,
+                                        clientHeight,
+                                        clientWidth,
+                                        scrollWidth,
                                         ...props,
                                     }}
                                 >

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import {Grid} from "react-virtualized";
 import {useRangeCalendarScheduleVirtualized} from "../RangeCalendarScheduleContextVirtualized";
 import {RangeVirtualizedColumnsInterface} from "../../../common/interfaces/ColumnVirtualizedInterface";
@@ -29,12 +29,15 @@ export const RangeCalendarScheduleContainerVirtualized = ({columns, dataSource, 
         bgColorColumn,
     } = useRangeCalendarScheduleVirtualized();
 
+    const ref = useRef<any>(null);
+
     return (
         <div
             style={{
                 backgroundColor: bgColorColumn,
                 color: textColorColumn,
             }}
+            ref={ref}
         >
             <Grid
                 autoHeight={true}
@@ -57,7 +60,7 @@ export const RangeCalendarScheduleContainerVirtualized = ({columns, dataSource, 
                 rowHeight={rowHeight}
                 rowCount={getRowCount(columns)}
 
-                scrollTop={scrollTop - ((rowHeight + (getRowCount(columns) * rowHeight)) * categoryIndex)}
+                scrollTop={scrollTop - (ref?.current?.offsetTop || 0)}
                 scrollLeft={scrollLeft}
             />
         </div>

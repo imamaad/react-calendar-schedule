@@ -41,6 +41,8 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
                     {accessorKey: 'CRJ400', title: "CRJ 400", placeholderCell: 'p 3'},
                     {accessorKey: 'CRJ500', title: "CRJ 500", placeholderCell: 'p 4'},
                     {accessorKey: 'CRJ600', title: "CRJ 600", placeholderCell: 'p 5'},
+                    {accessorKey: 'CRJ600', title: "CRJ 600", placeholderCell: 'p 5'},
+                    {accessorKey: 'CRJ600', title: "CRJ 600", placeholderCell: 'p 5'},
                 ],
                 dataSource: [
                     {
@@ -69,34 +71,10 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
                     {accessorKey: 'CRJ300', title: "CRJ 400", placeholderCell: 'p 3'},
                     {accessorKey: 'CRJ300', title: "CRJ 500", placeholderCell: 'p 4'},
                     {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
-                ],
-                dataSource: [
-                    {
-                        column: 'CRJ200',
-                        date: '2024-02-25T21:01:39+03:30',
-                        children: 'test 1',
-
-                    },
-                    {
-                        column: 'CRJ200',
-                        date: '2024-02-25T21:01:39+03:30',
-                        children: 'test 2',
-
-                    },
-                    {
-                        column: 'CRJ300',
-                        date: '2024-02-25T21:01:39+03:30',
-                        children: 'test 3'
-                    }
-                ]
-            },
-            {
-                title: 'Aircraft 2',
-                columns: [
-                    {accessorKey: 'CRJ200', title: "CRJ 200", placeholderCell: 'p 1'},
-                    {accessorKey: 'CRJ300', title: "CRJ 300", placeholderCell: 'p 2'},
-                    {accessorKey: 'CRJ300', title: "CRJ 400", placeholderCell: 'p 3'},
-                    {accessorKey: 'CRJ300', title: "CRJ 500", placeholderCell: 'p 4'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
                     {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
                 ],
                 dataSource: [
@@ -149,7 +127,7 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
                 ]
             },
             {
-                title: 'Aircraft 2',
+                title: 'Aircraft 3',
                 columns: [
                     {accessorKey: 'CRJ200', title: "CRJ 200", placeholderCell: 'p 1'},
                     {accessorKey: 'CRJ300', title: "CRJ 300", placeholderCell: 'p 2'},
@@ -178,10 +156,100 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
                 ]
             },
             {
-                title: 'Aircraft 2',
+                title: 'Aircraft 4',
                 columns: [
                     {accessorKey: 'CRJ200', title: "CRJ 200", placeholderCell: 'p 1'},
                     {accessorKey: 'CRJ300', title: "CRJ 300", placeholderCell: 'p 2'},
+                    {accessorKey: 'CRJ300', title: "CRJ 400", placeholderCell: 'p 3'},
+                    {accessorKey: 'CRJ300', title: "CRJ 500", placeholderCell: 'p 4'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
+                ],
+                dataSource: [
+                    {
+                        column: 'CRJ200',
+                        date: '2024-02-25T21:01:39+03:30',
+                        children: 'test 1',
+
+                    },
+                    {
+                        column: 'CRJ200',
+                        date: '2024-02-25T21:01:39+03:30',
+                        children: 'test 2',
+
+                    },
+                    {
+                        column: 'CRJ300',
+                        date: '2024-02-25T21:01:39+03:30',
+                        children: 'test 3'
+                    }
+                ]
+            },
+            {
+                title: 'Aircraft 4',
+                columns: [
+                    {accessorKey: 'CRJ200', title: "CRJ 200", placeholderCell: 'p 1'},
+                    {accessorKey: 'CRJ300', title: "CRJ 300", placeholderCell: 'p 2'},
+                ],
+                dataSource: [
+                    {
+                        column: 'CRJ200',
+                        date: '2024-02-25T21:01:39+03:30',
+                        children: 'test 1',
+
+                    },
+                    {
+                        column: 'CRJ200',
+                        date: '2024-02-25T21:01:39+03:30',
+                        children: 'test 2',
+
+                    },
+                    {
+                        column: 'CRJ300',
+                        date: '2024-02-25T21:01:39+03:30',
+                        children: 'test 3'
+                    }
+                ]
+            },
+            {
+                title: 'Aircraft 5',
+                columns: [
+                    {accessorKey: 'CRJ200', title: "CRJ 200", placeholderCell: 'p 1'},
+                ],
+                dataSource: [
+                    {
+                        column: 'CRJ200',
+                        date: '2024-02-25T21:01:39+03:30',
+                        children: 'test 1',
+
+                    },
+                    {
+                        column: 'CRJ200',
+                        date: '2024-02-25T21:01:39+03:30',
+                        children: 'test 2',
+
+                    },
+                    {
+                        column: 'CRJ300',
+                        date: '2024-02-25T21:01:39+03:30',
+                        children: 'test 3'
+                    }
+                ]
+            },
+            {
+                title: 'Aircraft 6',
+                columns: [
+                    {accessorKey: 'CRJ200', title: "CRJ 200", placeholderCell: 'p 1'},
+                    {accessorKey: 'CRJ300', title: "CRJ 300", placeholderCell: 'p 2'},
+                    {accessorKey: 'CRJ300', title: "CRJ 400", placeholderCell: 'p 3'},
+                    {accessorKey: 'CRJ300', title: "CRJ 400", placeholderCell: 'p 3'},
+                    {accessorKey: 'CRJ300', title: "CRJ 400", placeholderCell: 'p 3'},
+                    {accessorKey: 'CRJ300', title: "CRJ 400", placeholderCell: 'p 3'},
                     {accessorKey: 'CRJ300', title: "CRJ 400", placeholderCell: 'p 3'},
                     {accessorKey: 'CRJ300', title: "CRJ 500", placeholderCell: 'p 4'},
                     {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
@@ -207,70 +275,24 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
                 ]
             },
             {
-                title: 'Aircraft 2',
+                title: 'Aircraft 7',
                 columns: [
                     {accessorKey: 'CRJ200', title: "CRJ 200", placeholderCell: 'p 1'},
                     {accessorKey: 'CRJ300', title: "CRJ 300", placeholderCell: 'p 2'},
                     {accessorKey: 'CRJ300', title: "CRJ 400", placeholderCell: 'p 3'},
                     {accessorKey: 'CRJ300', title: "CRJ 500", placeholderCell: 'p 4'},
                     {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
-                ],
-                dataSource: [
-                    {
-                        column: 'CRJ200',
-                        date: '2024-02-25T21:01:39+03:30',
-                        children: 'test 1',
-
-                    },
-                    {
-                        column: 'CRJ200',
-                        date: '2024-02-25T21:01:39+03:30',
-                        children: 'test 2',
-
-                    },
-                    {
-                        column: 'CRJ300',
-                        date: '2024-02-25T21:01:39+03:30',
-                        children: 'test 3'
-                    }
-                ]
-            },
-            {
-                title: 'Aircraft 2',
-                columns: [
-                    {accessorKey: 'CRJ200', title: "CRJ 200", placeholderCell: 'p 1'},
-                    {accessorKey: 'CRJ300', title: "CRJ 300", placeholderCell: 'p 2'},
-                    {accessorKey: 'CRJ300', title: "CRJ 400", placeholderCell: 'p 3'},
-                    {accessorKey: 'CRJ300', title: "CRJ 500", placeholderCell: 'p 4'},
                     {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
-                ],
-                dataSource: [
-                    {
-                        column: 'CRJ200',
-                        date: '2024-02-25T21:01:39+03:30',
-                        children: 'test 1',
-
-                    },
-                    {
-                        column: 'CRJ200',
-                        date: '2024-02-25T21:01:39+03:30',
-                        children: 'test 2',
-
-                    },
-                    {
-                        column: 'CRJ300',
-                        date: '2024-02-25T21:01:39+03:30',
-                        children: 'test 3'
-                    }
-                ]
-            },
-            {
-                title: 'Aircraft 2',
-                columns: [
-                    {accessorKey: 'CRJ200', title: "CRJ 200", placeholderCell: 'p 1'},
-                    {accessorKey: 'CRJ300', title: "CRJ 300", placeholderCell: 'p 2'},
-                    {accessorKey: 'CRJ300', title: "CRJ 400", placeholderCell: 'p 3'},
-                    {accessorKey: 'CRJ300', title: "CRJ 500", placeholderCell: 'p 4'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
+                    {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
                     {accessorKey: 'CRJ300', title: "CRJ 600", placeholderCell: 'p 5'},
                 ],
                 dataSource: [

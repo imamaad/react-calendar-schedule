@@ -29,7 +29,7 @@ export default [
             typescript({tsconfig: "./tsconfig.json"}),
             postcss()
         ],
-        external: ["react", "react-dom", "moment", "lodash", "react-virtualized"],
+        external: ["react", "react-dom", "moment", "lodash", "react-virtualized", "@types/react-virtualized"],
     },
     {
         input: "dist/esm/types/index.d.ts",

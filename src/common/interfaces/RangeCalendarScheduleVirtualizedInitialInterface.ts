@@ -11,7 +11,7 @@ export interface RangeVirtualizedCategoryInterface {
     dataSource: Array<rangeVirtualizedDataSourceItemInterface>
 }
 
-export interface RangeCalendarScheduleVirtualizedInitialInterface extends RangeVirtualizedColumnsInterface, rangeVirtualizedDataSourceInterface {
+export interface RangeCalendarScheduleVirtualizedInitialInterface {
     startDate: string,
     endDate: string,
     sidebarWidth?: number,

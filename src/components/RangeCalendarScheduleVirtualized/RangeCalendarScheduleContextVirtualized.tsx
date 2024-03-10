@@ -13,6 +13,10 @@ interface RangeCalendarScheduleVirtualizedInitialPropsInterface extends RangeCal
     width: number,
     scrollLeft: number,
     scrollTop: number,
+    scrollHeight: number,
+    clientHeight: number,
+    clientWidth: number,
+    scrollWidth: number,
 }
 
 interface RangeCalendarScheduleVirtualizedContextType extends RangeCalendarScheduleVirtualizedInitialPropsInterface {
@@ -145,8 +149,8 @@ export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps>
         columnCount: days.length,
         getRowCount: (columns) => columns.length,
         rowHeight: 100,
-        overScanColumnCount: 0,
-        overScanRowCount: 5,
+        overScanColumnCount: 10,
+        overScanRowCount: 10,
         bordered: false,
         ...initialProps,
         _renderLeftHeaderCell,
