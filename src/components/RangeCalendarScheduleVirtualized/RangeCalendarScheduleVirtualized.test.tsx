@@ -6,13 +6,20 @@ describe("RangeCalendarSchedule", () => {
     test("renders the CalendarSchedule component", () => {
         render(
             <RangeCalendarScheduleVirtualized
-                size={{width: 180, height: 180}}
                 bgColorHeader={'red'}
+                textColorHeader={'black'}
                 columns={[]}
                 dataSource={[]}
-                minTime={'2020-10-10'}
-                maxTime={'2020-10-20'}
-                sidebarTitle={'title'}
+                headerHeight={48}
+                startDate={'2020-10-10'}
+                endDate={'2020-10-20'}
+                categories={[]}
+                bgColorSidebar={'red'}
+                textColorSidebar={'red'}
+                textColorColumn={"red"}
+                bgColorColumn={"red"}
+                groupRenderer={() => <div>test</div>}
+                itemRenderer={() => <div>test</div>}
             />
         );
     });

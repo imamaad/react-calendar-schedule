@@ -1,32 +1,44 @@
-.GridRow {
-    position: relative;
+
+.GridHeader {
     display: flex;
-    flex-direction: row;
+    position: sticky;
+    top: 0;
+    z-index: 90;
 }
-.GridColumn {
+
+.GridTitle {
+    position: sticky;
+    left: 0;
+    z-index: 10;
+}
+
+.GridBody {
     display: flex;
-    flex-direction: column;
-    flex: 1 1 auto;
-    height: 100%;
 }
+
 .LeftSideGridContainer {
-    flex: 0 0 75px;
+    position: sticky;
+    left: 0;
     z-index: 10;
 }
 
 .LeftSideGrid {
     overflow: hidden !important;
 }
+
 .HeaderGrid {
     width: 100%;
     overflow: hidden !important;
 }
+
 .BodyGrid {
+    overflow: hidden !important;
     width: 100%;
 }
 
 .evenRow {
 }
+
 .oddRow {
     background-color: rgba(0, 0, 0, .1);
 }
@@ -41,8 +53,8 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 .5em;
 }
+
 .headerCell,
 .leftCell {
     font-weight: bold;

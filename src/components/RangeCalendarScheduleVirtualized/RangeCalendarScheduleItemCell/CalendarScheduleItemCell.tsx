@@ -1,7 +1,6 @@
 import React, {useMemo} from "react";
 import _ from "lodash";
 import {RangeColumnInterface} from "../../../common/interfaces/ColumnInterface";
-import moment from "moment";
 import {RangeDataSourceItemInterface} from "../../../common/interfaces/dataSourceItemInterface";
 import {useRangeCalendarSchedule} from "../RangeCalendarScheduleContextVirtualized";
 import {RangeCalendarScheduleItem} from "../RangeCalendarScheduleItem";

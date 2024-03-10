@@ -1,10 +1,10 @@
 import _ from "lodash";
 import moment from "moment";
 
-export const rangeBuildCalendarVirtualized = (date: string, subtract: number = 30, add: number = 30) => {
+export const rangeBuildCalendarVirtualized = (sDate: string, eDate: string) => {
 
-    const startDay = moment(date).clone().subtract(subtract, 'day');
-    const endDay = moment(date).clone().add(add, 'day');
+    const startDay = moment(sDate).startOf('day');
+    const endDay = moment(eDate).endOf('day');
 
     const calendar: Array<string> = [];
 
