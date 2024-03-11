@@ -52,8 +52,6 @@ export const RangeCalendarScheduleContainerVirtualized = ({columns}: props) => {
             <div
                 key={itemKey}
                 style={{
-                    border: bordered ? '1px solid #bbb' : 'unset',
-                    boxSizing: 'border-box',
                     marginBottom: 5,
                 }}
             >
