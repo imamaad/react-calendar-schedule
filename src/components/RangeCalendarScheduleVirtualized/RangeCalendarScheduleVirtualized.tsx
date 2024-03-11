@@ -2,8 +2,7 @@ import React, {SyntheticEvent} from "react";
 import {RangeCalendarScheduleConsumer, RangeCalendarScheduleProvider} from "./RangeCalendarScheduleContextVirtualized";
 import {RangeCalendarScheduleVirtualizedInitialInterface} from "../../common/interfaces";
 import {AutoSizer, ScrollSync} from 'react-virtualized';
-import {RangeCalendarScheduleBodyVirtualized} from "./RangeCalendarScheduleBodyVirtualized";
-import {RangeCalendarScheduleHeaderVirtualized} from "./ReangeCalendarScheduleHeaderVirtualized";
+import {useScrollContainer} from 'react-indiana-drag-scroll';
 
 import './ScrollSync.example.css';
 import './range-calendar-schedule-virtualized.scss';
@@ -14,8 +13,14 @@ import {
 
 export const RangeCalendarScheduleVirtualized: React.FC<RangeCalendarScheduleVirtualizedInitialInterface> = (props) => {
 
-    return (
+    const scrollContainer = useScrollContainer({
+        mouseScroll: {
+            ignoreElements: '.LeftSideGridContainer,.GridTitle',
+            rubberBand: false,
+        }
+    });
 
+    return (
         <div className='imamaad-range-calendar-schedule-virtualized' style={{height: '100%'}}>
             <AutoSizer>
                 {({width, height}) => (
@@ -47,7 +52,8 @@ export const RangeCalendarScheduleVirtualized: React.FC<RangeCalendarScheduleVir
                                     <RangeCalendarScheduleConsumer>
                                         {({categories, headerHeight, rowHeight, getRowCount}) => (
                                             <div
-                                                style={{width, height, overflow: 'scroll'}}
+                                                ref={scrollContainer.ref}
+                                                style={{width, height, overflow: 'auto'}}
                                                 onScroll={(event: SyntheticEvent<HTMLDivElement>) => {
                                                     const {
                                                         clientHeight,
