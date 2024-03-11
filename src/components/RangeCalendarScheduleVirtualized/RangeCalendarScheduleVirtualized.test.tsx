@@ -19,6 +19,9 @@ describe("RangeCalendarSchedule", () => {
                 bgColorColumn={"red"}
                 groupRenderer={() => <div>test</div>}
                 itemRenderer={() => <div>test</div>}
+                onContextMenu={() =>{
+
+                }}
             />
         );
     });

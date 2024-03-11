@@ -29,7 +29,8 @@ export const RangeCalendarScheduleHeaderVirtualized = ({category, open, onChange
     const _renderLeftHeaderCell = ({title = "", columnIndex, key, style}: any) => {
         return (
             <div
-                className="headerCell" key={key}
+                className="headerCell"
+                key={key}
                 style={{
                     ...style,
                     display: "flex",
@@ -41,7 +42,14 @@ export const RangeCalendarScheduleHeaderVirtualized = ({category, open, onChange
                 }}
             >
                 <div>{title}</div>
-                <div onClick={() => onChangeOpen(!open)} style={{cursor: "pointer"}}>
+                <div
+                    onClick={() => onChangeOpen(!open)}
+                    style={{
+                        cursor: "pointer",
+                        transition: 'all 200ms',
+                        transform: `rotate( ${open ? '-180deg' : '0deg'})`
+                    }}
+                >
                     {openIcon}
                 </div>
             </div>
@@ -55,6 +63,8 @@ export const RangeCalendarScheduleHeaderVirtualized = ({category, open, onChange
                 height: headerHeight,
                 width: sidebarWidth + (columnCount * columnWidth),
                 backgroundColor: bgColorHeader,
+                borderBottom: bordered ? '1px solid #bbb' : 'unset',
+                boxSizing: 'border-box',
             }}
         >
             <div

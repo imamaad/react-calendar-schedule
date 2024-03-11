@@ -1,6 +1,6 @@
 {
   "name": "react-calendar-schedule",
-  "version": "0.1.0-beta.31",
+  "version": "0.1.0-beta.32",
   "description": "A modern and responsive react calendar schedule component.",
   "author": "mohammad hossine rezazadeh <imamaad.ir@gmail.com>",
   "license": "MIT",
@@ -57,6 +57,7 @@
     "path": "^0.12.7",
     "postcss": "^8.4.19",
     "react": "^18.2.0",
+    "react-animate-height": "^3.2.3",
     "react-dom": "^18.2.0",
     "react-indiana-drag-scroll": "^3.0.3-alpha",
     "react-virtualized": "^9.22.5",

@@ -25,15 +25,24 @@ export const RangeCalendarScheduleContainerVirtualized = ({columns}: props) => {
         textColorColumn,
         bgColorColumn,
         bordered,
-        itemRenderer
+        itemRenderer,
+        onContextMenu
     } = useRangeCalendarScheduleVirtualized();
 
     const ref = useRef<any>(null);
 
-    const _renderBodyCell = ({items, columnIndex, key, rowIndex, style}: any) => {
+    const _renderBodyCell = ({day, items, columnIndex, key, rowIndex, style}: any) => {
         return (
             <div
                 key={key}
+                onContextMenu={
+                    (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+                        event.preventDefault();
+                        if (event.target === event.currentTarget) {
+                            onContextMenu({day, items, columnIndex, key, rowIndex})
+                        }
+                    }
+                }
                 style={{
                     ...style,
                     border: bordered ? '1px solid #bbb' : 'unset',
@@ -50,6 +59,7 @@ export const RangeCalendarScheduleContainerVirtualized = ({columns}: props) => {
     const _renderItemCell = ({item, columnIndex, key, rowIndex, itemKey}: any) => {
         return (
             <div
+                className='imamaad-range-calendar-schedule-virtualized-item'
                 key={itemKey}
                 style={{
                     marginBottom: 5,
@@ -83,7 +93,7 @@ export const RangeCalendarScheduleContainerVirtualized = ({columns}: props) => {
                     const day = days[props.columnIndex];
                     const items = columns[props?.rowIndex]?.events?.[day] || [];
 
-                    return _renderBodyCell({...props, items})
+                    return _renderBodyCell({...props, day, items})
                 }}
                 rowHeight={rowHeight}
                 rowCount={getRowCount(columns)}

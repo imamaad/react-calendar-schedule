@@ -33,12 +33,10 @@ export const RangeCalendarScheduleCategoryVirtualized = ({category, categoryInde
                     setOpen(value)
                 }}
             />
-            {
-                open &&
-                <RangeCalendarScheduleBodyVirtualized
-                    category={category}
-                />
-            }
+            <RangeCalendarScheduleBodyVirtualized
+                category={category}
+                open={open}
+            />
         </div>
     )
 }

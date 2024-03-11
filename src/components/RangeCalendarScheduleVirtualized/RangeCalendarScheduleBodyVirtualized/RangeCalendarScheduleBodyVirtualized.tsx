@@ -9,26 +9,33 @@ import {useRangeCalendarScheduleVirtualized} from "../RangeCalendarScheduleConte
 import {
     RangeVirtualizedCategoryInterface
 } from "../../../common/interfaces/RangeCalendarScheduleVirtualizedInitialInterface";
+import AnimateHeight from "react-animate-height";
 
-export const RangeCalendarScheduleBodyVirtualized = ({category}: {
+export const RangeCalendarScheduleBodyVirtualized = ({category, open}: {
     category: RangeVirtualizedCategoryInterface,
+    open: boolean
 }) => {
 
     const {columnWidth, columnCount} = useRangeCalendarScheduleVirtualized();
 
     return (
-        <div
-            className={"GridBody"}
-            style={{
-                width: columnCount * columnWidth,
-            }}
+        <AnimateHeight
+            duration={200}
+            height={open ? "auto" : 0}
         >
-            <RangeCalendarScheduleSiderVirtualized
-                columns={category.columns}
-            />
-            <RangeCalendarScheduleContainerVirtualized
-                columns={category.columns}
-            />
-        </div>
+            <div
+                className={"GridBody"}
+                style={{
+                    width: columnCount * columnWidth,
+                }}
+            >
+                <RangeCalendarScheduleSiderVirtualized
+                    columns={category.columns}
+                />
+                <RangeCalendarScheduleContainerVirtualized
+                    columns={category.columns}
+                />
+            </div>
+        </AnimateHeight>
     )
 }

@@ -29,7 +29,9 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
         textColorColumn: "#000",
         bgColorColumn: "#fff",
         openIcon: "A",
-
+        onContextMenu: (props) => {
+            console.log({props})
+        },
         format: {
             top: 'YYYY',
             bottom: 'D MMM ddd',
