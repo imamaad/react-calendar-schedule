@@ -9,6 +9,7 @@ describe("RangeCalendarSchedule", () => {
                 bgColorHeader={'red'}
                 textColorHeader={'black'}
                 headerHeight={48}
+                openIcon={<div>test</div>}
                 startDate={'2020-10-10'}
                 endDate={'2020-10-20'}
                 categories={[]}

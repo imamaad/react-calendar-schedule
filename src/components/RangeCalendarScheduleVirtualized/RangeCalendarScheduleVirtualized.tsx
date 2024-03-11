@@ -17,6 +17,7 @@ export const RangeCalendarScheduleVirtualized: React.FC<RangeCalendarScheduleVir
         mouseScroll: {
             ignoreElements: '.LeftSideGridContainer,.GridTitle',
             rubberBand: false,
+            inertia: false,
         }
     });
 
