@@ -31,15 +31,15 @@ export const RangeCalendarScheduleContainerVirtualized = ({columns}: props) => {
 
     const ref = useRef<any>(null);
 
-    const _renderBodyCell = ({day, items, columnIndex, key, rowIndex, style}: any) => {
+    const _renderBodyCell = ({day, items, columnIndex, key, rowIndex, style, column}: any) => {
         return (
             <div
                 key={key}
                 onContextMenu={
                     (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-                        event.preventDefault();
-                        if (event.target === event.currentTarget) {
-                            onContextMenu({day, items, columnIndex, key, rowIndex})
+                        event?.preventDefault();
+                        if (event?.target === event?.currentTarget) {
+                            onContextMenu({day, items, columnIndex, key, rowIndex, column})
                         }
                     }
                 }
@@ -91,9 +91,10 @@ export const RangeCalendarScheduleContainerVirtualized = ({columns}: props) => {
                 overscanRowCount={overScanRowCount}
                 cellRenderer={(props) => {
                     const day = days[props.columnIndex];
-                    const items = columns[props?.rowIndex]?.events?.[day] || [];
+                    const column = columns[props?.rowIndex];
+                    const items = column?.events?.[day] || [];
 
-                    return _renderBodyCell({...props, day, items})
+                    return _renderBodyCell({...props, day, items, column})
                 }}
                 rowHeight={rowHeight}
                 rowCount={getRowCount(columns)}
