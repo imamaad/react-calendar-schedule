@@ -2,15 +2,13 @@ import React, {useRef} from "react";
 import {Grid} from "react-virtualized";
 import {useRangeCalendarScheduleVirtualized} from "../RangeCalendarScheduleContextVirtualized";
 import {RangeVirtualizedColumnsInterface} from "../../../common/interfaces/ColumnVirtualizedInterface";
-import {rangeVirtualizedDataSourceInterface} from "../../../common/interfaces/rangeVirtualizedDataSourceInterface";
 import _ from "lodash";
 import moment from "moment";
 
 interface props extends RangeVirtualizedColumnsInterface {
-    categoryIndex: number,
 }
 
-export const RangeCalendarScheduleContainerVirtualized = ({columns, categoryIndex}: props) => {
+export const RangeCalendarScheduleContainerVirtualized = ({columns}: props) => {
 
     const {
         days,
@@ -22,14 +20,44 @@ export const RangeCalendarScheduleContainerVirtualized = ({columns, categoryInde
         overScanRowCount,
         getRowCount,
         rowHeight,
-        _renderBodyCell,
         scrollTop,
         scrollLeft,
         textColorColumn,
         bgColorColumn,
+        bordered,
+        itemRenderer
     } = useRangeCalendarScheduleVirtualized();
 
     const ref = useRef<any>(null);
+
+    const _renderBodyCell = ({items, columnIndex, key, rowIndex, style}: any) => {
+        return (
+            <div
+                key={key}
+                style={{
+                    ...style,
+                    border: bordered ? '1px solid #bbb' : 'unset',
+                    boxSizing: 'border-box',
+                }}
+            >
+                {_.map(items, (item, itemKey) => _renderItemCell({item, columnIndex, key, rowIndex, style, itemKey}))}
+            </div>
+        );
+    }
+
+    const _renderItemCell = ({item, columnIndex, key, rowIndex, itemKey}: any) => {
+        return (
+            <div
+                key={itemKey}
+                style={{
+                    border: bordered ? '1px solid #bbb' : 'unset',
+                    boxSizing: 'border-box',
+                }}
+            >
+                {itemRenderer({item, columnIndex, key, rowIndex, itemKey})}
+            </div>
+        );
+    }
 
     return (
         <div
@@ -51,9 +79,8 @@ export const RangeCalendarScheduleContainerVirtualized = ({columns, categoryInde
                 overscanColumnCount={overScanColumnCount}
                 overscanRowCount={overScanRowCount}
                 cellRenderer={(props) => {
-                    const items = _.filter(columns[props?.rowIndex]?.dataSource, item => {
-                        return moment(days[props.columnIndex]).format('YYYY-MM-DD') === moment(item.date).format("YYYY-MM-DD")
-                    });
+                    const day = days[props.columnIndex];
+                    const items = columns[props?.rowIndex]?.events?.[day] || [];
 
                     return _renderBodyCell({...props, items})
                 }}

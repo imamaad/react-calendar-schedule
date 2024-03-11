@@ -35,27 +35,51 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
         categories: [
             {
                 title: 'Aircraft 1',
+                defaultOpen: true,
                 columns: [
                     {
-                        accessorKey: 'CRJ200',
-                        dataSource: [
-                            {
-                                column: 'CRJ200',
-                                date: '2024-03-12T21:01:39+03:30',
-                                children: 'test 1',
-                            },
-                            {
-                                column: 'CRJ200',
-                                date: '2024-02-25T21:01:39+03:30',
-                                children: 'test 2',
+                        events: {
+                            "2024-03-13": [
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 1',
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 2',
 
-                            },
-                            {
-                                column: 'CRJ300',
-                                date: '2024-02-25T21:01:39+03:30',
-                                children: 'test 3'
-                            }
-                        ]
+                                },
+                                {
+                                    column: 'CRJ300',
+                                    children: 'test 3'
+                                }
+                            ]
+                        }
+                    },
+                ],
+            },
+            {
+                title: 'Aircraft 2',
+                defaultOpen: false,
+                columns: [
+                    {
+                        events: {
+                            "2024-03-14": [
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 1',
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 2',
+
+                                },
+                                {
+                                    column: 'CRJ300',
+                                    children: 'test 3'
+                                }
+                            ]
+                        }
                     },
                 ],
             },

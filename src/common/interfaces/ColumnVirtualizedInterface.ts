@@ -1,9 +1,7 @@
 import {rangeVirtualizedDataSourceItemInterface} from "./rangeVirtualizedDataSourceInterface";
 
 export interface RangeVirtualizedColumnInterface {
-    accessorKey: string,
-
-    dataSource: Array<rangeVirtualizedDataSourceItemInterface>
+    events: { [propName: string]: Array<rangeVirtualizedDataSourceItemInterface> }
 
     [propName: string]: any,
 }

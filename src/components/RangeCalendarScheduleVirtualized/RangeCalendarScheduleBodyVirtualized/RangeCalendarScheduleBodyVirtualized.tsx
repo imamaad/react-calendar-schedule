@@ -10,9 +10,8 @@ import {
     RangeVirtualizedCategoryInterface
 } from "../../../common/interfaces/RangeCalendarScheduleVirtualizedInitialInterface";
 
-export const RangeCalendarScheduleBodyVirtualized = ({category, categoryIndex}: {
+export const RangeCalendarScheduleBodyVirtualized = ({category}: {
     category: RangeVirtualizedCategoryInterface,
-    categoryIndex: number
 }) => {
 
     const {columnWidth, columnCount} = useRangeCalendarScheduleVirtualized();
@@ -26,11 +25,9 @@ export const RangeCalendarScheduleBodyVirtualized = ({category, categoryIndex}: 
         >
             <RangeCalendarScheduleSiderVirtualized
                 columns={category.columns}
-                categoryIndex={categoryIndex}
             />
             <RangeCalendarScheduleContainerVirtualized
                 columns={category.columns}
-                categoryIndex={categoryIndex}
             />
         </div>
     )

@@ -8,18 +8,30 @@ import {
     RangeVirtualizedCategoryInterface
 } from "../../../common/interfaces/RangeCalendarScheduleVirtualizedInitialInterface";
 
-export const RangeCalendarScheduleHeaderVirtualized = ({category}: { category: RangeVirtualizedCategoryInterface }) => {
+export const RangeCalendarScheduleHeaderVirtualized = ({category, open, onChangeOpen}: {
+    category: RangeVirtualizedCategoryInterface,
+    open: boolean,
+    onChangeOpen: (value: boolean) => void
+}) => {
 
     const {
         columnWidth,
         columnCount,
-        _renderLeftHeaderCell,
         bgColorHeader,
         textColorHeader,
         headerHeight,
         sidebarWidth,
         bordered,
     } = useRangeCalendarScheduleVirtualized();
+
+    const _renderLeftHeaderCell = ({title = "", columnIndex, key, style}: any) => {
+        return (
+            <div className="headerCell" key={key} style={style}>
+                <div>{title}</div>
+                <div onClick={() => onChangeOpen(!open)}>BTN</div>
+            </div>
+        );
+    }
 
     return (
         <div

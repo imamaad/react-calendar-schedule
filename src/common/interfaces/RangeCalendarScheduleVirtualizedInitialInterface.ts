@@ -1,12 +1,9 @@
 import React from "react";
-import {RangeVirtualizedColumnInterface, RangeVirtualizedColumnsInterface} from "./ColumnVirtualizedInterface";
-import {
-    rangeVirtualizedDataSourceInterface,
-    rangeVirtualizedDataSourceItemInterface
-} from "./rangeVirtualizedDataSourceInterface";
+import {RangeVirtualizedColumnInterface} from "./ColumnVirtualizedInterface";
 
 export interface RangeVirtualizedCategoryInterface {
     title: string,
+    defaultOpen: boolean,
     columns: Array<RangeVirtualizedColumnInterface>,
 }
 

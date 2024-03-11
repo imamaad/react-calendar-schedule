@@ -29,10 +29,8 @@ interface RangeCalendarScheduleVirtualizedContextType extends RangeCalendarSched
     overScanColumnCount: number,
     overScanRowCount: number,
 
-    _renderLeftHeaderCell: (props: any) => React.ReactNode
     _renderLeftSideCell: (props: any) => React.ReactNode
     _renderHeaderCell: (props: any) => React.ReactNode
-    _renderBodyCell: (props: any) => React.ReactNode
 }
 
 
@@ -51,7 +49,7 @@ interface RangeScheduleProviderProps {
 
 export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps> = ({children, initialProps}) => {
 
-    const {startDate, endDate, format, bordered, groupRenderer, itemRenderer} = initialProps;
+    const {startDate, endDate, format, bordered, groupRenderer} = initialProps;
 
 
     const [days, setDays] = useState<Array<string>>([]);
@@ -68,14 +66,6 @@ export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps>
         // eslint-disable-next-line
     }, [startDate, endDate]);
 
-
-    const _renderLeftHeaderCell = ({title = "", columnIndex, key, style}: any) => {
-        return (
-            <div className="headerCell" key={key} style={style}>
-                {title}
-            </div>
-        );
-    }
 
     const _renderLeftSideCell = ({column, columnIndex, key, rowIndex, style}: any) => {
         return (
@@ -111,36 +101,6 @@ export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps>
         );
     }
 
-    const _renderBodyCell = ({items, columnIndex, key, rowIndex, style}: any) => {
-        return (
-            <div
-                key={key}
-                style={{
-                    ...style,
-                    border: bordered ? '1px solid #bbb' : 'unset',
-                    boxSizing: 'border-box',
-                }}
-            >
-                {_.map(items, (item, itemKey) => _renderItemCell({item, columnIndex, key, rowIndex, style, itemKey}))}
-            </div>
-        );
-    }
-
-    const _renderItemCell = ({item, columnIndex, key, rowIndex, style, itemKey}: any) => {
-        return (
-            <div
-                key={itemKey}
-                style={{
-                    ...style,
-                    border: bordered ? '1px solid #bbb' : 'unset',
-                    boxSizing: 'border-box',
-                }}
-            >
-                {itemRenderer({item, columnIndex, key, rowIndex, style, itemKey})}
-            </div>
-        );
-    }
-
 
     const value: RangeCalendarScheduleVirtualizedContextType = {
         days: days,
@@ -153,10 +113,8 @@ export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps>
         overScanRowCount: 10,
         bordered: false,
         ...initialProps,
-        _renderLeftHeaderCell,
         _renderLeftSideCell,
         _renderHeaderCell,
-        _renderBodyCell,
     };
 
     return (

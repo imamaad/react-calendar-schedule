@@ -4,10 +4,9 @@ import {Grid} from "react-virtualized";
 import {RangeVirtualizedColumnsInterface} from "../../../common/interfaces/ColumnVirtualizedInterface";
 
 interface props extends RangeVirtualizedColumnsInterface {
-    categoryIndex: number,
 }
 
-export const RangeCalendarScheduleSiderVirtualized = ({columns, categoryIndex}: props) => {
+export const RangeCalendarScheduleSiderVirtualized = ({columns}: props) => {
 
     const {
         overScanColumnCount,

@@ -8,6 +8,9 @@ import {RangeCalendarScheduleHeaderVirtualized} from "./ReangeCalendarScheduleHe
 import './ScrollSync.example.css';
 import './range-calendar-schedule-virtualized.scss';
 import _ from "lodash";
+import {
+    RangeCalendarScheduleCategoryVirtualized
+} from "./RangeCalendarScheduleCategoryVirtualized/RangeCalendarScheduleCategoryVirtualized";
 
 export const RangeCalendarScheduleVirtualized: React.FC<RangeCalendarScheduleVirtualizedInitialInterface> = (props) => {
 
@@ -67,20 +70,11 @@ export const RangeCalendarScheduleVirtualized: React.FC<RangeCalendarScheduleVir
                                             >
                                                 {_.map(categories, (category, categoryIndex) => {
                                                     return (
-                                                        <div
+                                                        <RangeCalendarScheduleCategoryVirtualized
                                                             key={categoryIndex}
-                                                            style={{
-                                                                height: (headerHeight + (getRowCount(category.columns) * rowHeight)),
-                                                            }}
-                                                        >
-                                                            <RangeCalendarScheduleHeaderVirtualized
-                                                                category={category}
-                                                            />
-                                                            <RangeCalendarScheduleBodyVirtualized
-                                                                categoryIndex={categoryIndex + 1}
-                                                                category={category}
-                                                            />
-                                                        </div>
+                                                            categoryIndex={categoryIndex}
+                                                            category={category}
+                                                        />
                                                     )
                                                 })}
                                             </div>
