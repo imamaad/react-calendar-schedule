@@ -4,7 +4,7 @@ import {Grid} from "react-virtualized";
 import {RangeVirtualizedColumnsInterface} from "../../../common/interfaces/ColumnVirtualizedInterface";
 
 
-export const CalendarScheduleDatesVirtualized = ({columns}:RangeVirtualizedColumnsInterface) => {
+export const CalendarScheduleDatesVirtualized = () => {
 
     const {
         columnWidth,

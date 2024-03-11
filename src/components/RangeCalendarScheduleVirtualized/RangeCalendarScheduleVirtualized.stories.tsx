@@ -28,6 +28,8 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
         bordered: true,
         textColorColumn: "#000",
         bgColorColumn: "#fff",
+        openIcon: "A",
+
         format: {
             top: 'YYYY',
             bottom: 'D MMM ddd',
@@ -40,6 +42,32 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
                     {
                         events: {
                             "2024-03-13": [
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 1',
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 2',
+
+                                },
+                                {
+                                    column: 'CRJ300',
+                                    children: 'test 3'
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 1',
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 2',
+
+                                },
+                                {
+                                    column: 'CRJ300',
+                                    children: 'test 3'
+                                },
                                 {
                                     column: 'CRJ200',
                                     children: 'test 1',

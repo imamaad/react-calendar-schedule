@@ -38,6 +38,8 @@ export const RangeCalendarScheduleContainerVirtualized = ({columns}: props) => {
                     ...style,
                     border: bordered ? '1px solid #bbb' : 'unset',
                     boxSizing: 'border-box',
+                    padding: 5,
+                    overflowY: 'auto'
                 }}
             >
                 {_.map(items, (item, itemKey) => _renderItemCell({item, columnIndex, key, rowIndex, style, itemKey}))}
@@ -52,6 +54,7 @@ export const RangeCalendarScheduleContainerVirtualized = ({columns}: props) => {
                 style={{
                     border: bordered ? '1px solid #bbb' : 'unset',
                     boxSizing: 'border-box',
+                    marginBottom: 5,
                 }}
             >
                 {itemRenderer({item, columnIndex, key, rowIndex, itemKey})}

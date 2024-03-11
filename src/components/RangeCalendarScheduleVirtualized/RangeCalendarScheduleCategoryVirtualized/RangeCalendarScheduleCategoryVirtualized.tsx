@@ -27,6 +27,7 @@ export const RangeCalendarScheduleCategoryVirtualized = ({category, categoryInde
         >
             <RangeCalendarScheduleHeaderVirtualized
                 category={category}
+                categoryIndex={categoryIndex}
                 open={open}
                 onChangeOpen={(value: boolean) => {
                     setOpen(value)

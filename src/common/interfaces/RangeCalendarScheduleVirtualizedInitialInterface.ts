@@ -21,6 +21,9 @@ export interface RangeCalendarScheduleVirtualizedInitialInterface {
     bordered?: boolean,
     textColorColumn: string,
     bgColorColumn: string,
+
+    openIcon: React.ReactNode,
+
     format?: {
         top?: string,
         bottom?: string,

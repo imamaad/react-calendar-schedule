@@ -8,10 +8,11 @@ import {
     RangeVirtualizedCategoryInterface
 } from "../../../common/interfaces/RangeCalendarScheduleVirtualizedInitialInterface";
 
-export const RangeCalendarScheduleHeaderVirtualized = ({category, open, onChangeOpen}: {
+export const RangeCalendarScheduleHeaderVirtualized = ({category, open, onChangeOpen, categoryIndex}: {
     category: RangeVirtualizedCategoryInterface,
     open: boolean,
-    onChangeOpen: (value: boolean) => void
+    onChangeOpen: (value: boolean) => void,
+    categoryIndex: number
 }) => {
 
     const {
@@ -22,13 +23,27 @@ export const RangeCalendarScheduleHeaderVirtualized = ({category, open, onChange
         headerHeight,
         sidebarWidth,
         bordered,
+        openIcon
     } = useRangeCalendarScheduleVirtualized();
 
     const _renderLeftHeaderCell = ({title = "", columnIndex, key, style}: any) => {
         return (
-            <div className="headerCell" key={key} style={style}>
+            <div
+                className="headerCell" key={key}
+                style={{
+                    ...style,
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    padding: "0 10px",
+                    boxSizing: "border-box",
+                }}
+            >
                 <div>{title}</div>
-                <div onClick={() => onChangeOpen(!open)}>BTN</div>
+                <div onClick={() => onChangeOpen(!open)} style={{cursor: "pointer"}}>
+                    {openIcon}
+                </div>
             </div>
         );
     }
@@ -38,7 +53,8 @@ export const RangeCalendarScheduleHeaderVirtualized = ({category, open, onChange
             className={"GridHeader"}
             style={{
                 height: headerHeight,
-                width: columnCount * columnWidth,
+                width: sidebarWidth + (columnCount * columnWidth),
+                backgroundColor: bgColorHeader,
             }}
         >
             <div
@@ -66,7 +82,7 @@ export const RangeCalendarScheduleHeaderVirtualized = ({category, open, onChange
                 />
             </div>
 
-            <CalendarScheduleDatesVirtualized columns={category.columns}/>
+            {(open || categoryIndex === 0) && <CalendarScheduleDatesVirtualized/>}
         </div>
     )
 }
