@@ -32,14 +32,15 @@ export const RangeCalendarScheduleContainerVirtualized = ({columns}: props) => {
     const ref = useRef<any>(null);
 
     const _renderBodyCell = ({day, items, columnIndex, key, rowIndex, style, column}: any) => {
+
         return (
             <div
                 key={key}
                 onContextMenu={
                     (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-                        event?.preventDefault();
+                        event.preventDefault();
                         if (event?.target === event?.currentTarget) {
-                            onContextMenu({day, items, columnIndex, key, rowIndex, column,event})
+                            onContextMenu({day, items, columnIndex, key, rowIndex, column, event})
                         }
                     }
                 }
