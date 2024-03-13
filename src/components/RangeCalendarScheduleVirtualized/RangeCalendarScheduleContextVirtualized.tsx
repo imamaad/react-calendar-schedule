@@ -1,4 +1,4 @@
-import {createContext, useContext, useEffect, useState} from "react";
+import {createContext, useContext, useEffect, useMemo, useState} from "react";
 import * as React from "react";
 import {rangeBuildCalendarVirtualized} from "./rangeBuildCalendarVirtualized";
 import {RangeCalendarScheduleVirtualizedInitialInterface} from "../../common/interfaces";
@@ -6,6 +6,8 @@ import clsx from 'clsx';
 import moment from "moment";
 import {RangeVirtualizedColumnInterface} from "../../common/interfaces/ColumnVirtualizedInterface";
 import _ from "lodash";
+import {OnScrollParams} from "react-virtualized";
+import {rangeVirtualizedDataSourceItemInterface} from "../../common/interfaces/rangeVirtualizedDataSourceInterface";
 
 
 interface RangeCalendarScheduleVirtualizedInitialPropsInterface extends RangeCalendarScheduleVirtualizedInitialInterface {
@@ -17,6 +19,7 @@ interface RangeCalendarScheduleVirtualizedInitialPropsInterface extends RangeCal
     clientHeight: number,
     clientWidth: number,
     scrollWidth: number,
+    onScroll: (params: OnScrollParams) => void
 }
 
 interface RangeCalendarScheduleVirtualizedContextType extends RangeCalendarScheduleVirtualizedInitialPropsInterface {
@@ -28,9 +31,14 @@ interface RangeCalendarScheduleVirtualizedContextType extends RangeCalendarSched
     rowHeight: number,
     overScanColumnCount: number,
     overScanRowCount: number,
-
-    _renderLeftSideCell: (props: any) => React.ReactNode
-    _renderHeaderCell: (props: any) => React.ReactNode
+    columns: Array<{
+        type: 'HEADER' | 'COLUMN',
+        title: string,
+        show: boolean,
+        groupId: string | number,
+        columnId: string | number,
+        events?: { [propName: string]: Array<rangeVirtualizedDataSourceItemInterface> }
+    }>
 }
 
 
@@ -49,8 +57,7 @@ interface RangeScheduleProviderProps {
 
 export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps> = ({children, initialProps}) => {
 
-    const {startDate, endDate, format, bordered, groupRenderer} = initialProps;
-
+    const {startDate, endDate, categories} = initialProps;
 
     const [days, setDays] = useState<Array<string>>([]);
 
@@ -67,40 +74,30 @@ export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps>
     }, [startDate, endDate]);
 
 
-    const _renderLeftSideCell = ({column, columnIndex, key, rowIndex, style}: any) => {
-        return (
-            <div
-                key={key}
-                style={{
-                    ...style,
-                    border: bordered ? '1px solid #bbb' : 'unset',
-                    boxSizing: 'border-box',
-                }}
-            >
-                {
-                    groupRenderer({column, columnIndex, key, rowIndex, style})
-                }
-            </div>
-        );
-    }
+    const columns = useMemo(() =>
+            _.reduce(categories, (result: Array<any> = [], category, key) => {
+                result.push({
+                    type: 'HEADER',
+                    title: category.title,
+                    show: true,
+                    groupId: 1,
+                    columnId: 1
+                });
 
-    const _renderHeaderCell = ({columnIndex, key, rowIndex, style}: any) => {
+                _.each(category.columns, column => {
+                    result.push({
+                        type: 'COLUMN',
+                        title: column.title,
+                        show: true,
+                        groupId: 1,
+                        columnId: 1,
+                        events: column.events,
+                    });
+                });
 
-        return (
-            <div
-                className="headerCell"
-                key={key}
-                style={{
-                    ...style,
-                    border: bordered ? '1px solid #bbb' : 'unset',
-                    boxSizing: 'border-box',
-                }}
-            >
-                {`${moment(days[columnIndex]).format((rowIndex === 0 ? format?.top : format?.bottom) || 'YYYY-MM-DD')}`}
-            </div>
-        );
-    }
-
+                return result;
+            }, [])
+        , [categories]);
 
     const value: RangeCalendarScheduleVirtualizedContextType = {
         days: days,
@@ -109,12 +106,11 @@ export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps>
         columnCount: days.length,
         getRowCount: (columns) => columns.length,
         rowHeight: 100,
-        overScanColumnCount: 10,
-        overScanRowCount: 10,
+        overScanColumnCount: 0,
+        overScanRowCount: 5,
         bordered: false,
+        columns,
         ...initialProps,
-        _renderLeftSideCell,
-        _renderHeaderCell,
     };
 
     return (

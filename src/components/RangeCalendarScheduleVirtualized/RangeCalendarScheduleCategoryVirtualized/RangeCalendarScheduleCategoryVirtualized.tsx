@@ -6,20 +6,12 @@ import {
     RangeVirtualizedCategoryInterface
 } from "../../../common/interfaces/RangeCalendarScheduleVirtualizedInitialInterface";
 
-interface props {
-    category: RangeVirtualizedCategoryInterface,
-    categoryIndex: number,
-}
-
-export const RangeCalendarScheduleCategoryVirtualized = ({category, categoryIndex}: props) => {
-
-    const {getRowCount, rowHeight, headerHeight} = useRangeCalendarScheduleVirtualized();
-
-    const [open, setOpen] = useState(category.defaultOpen);
-
-    const height = useMemo(() => open ? (headerHeight + (getRowCount(category.columns) * rowHeight)) : headerHeight, [open]);
+export const RangeCalendarScheduleCategoryVirtualized = () => {
 
     return (
+        <RangeCalendarScheduleBodyVirtualized/>
+    )
+    /*return (
         <div
             style={{
                 height: height,
@@ -38,5 +30,5 @@ export const RangeCalendarScheduleCategoryVirtualized = ({category, categoryInde
                 open={open}
             />
         </div>
-    )
+    )*/
 }

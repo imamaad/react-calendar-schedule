@@ -1,4 +1,4 @@
-import React, {SyntheticEvent} from "react";
+import React from "react";
 import {RangeCalendarScheduleConsumer, RangeCalendarScheduleProvider} from "./RangeCalendarScheduleContextVirtualized";
 import {RangeCalendarScheduleVirtualizedInitialInterface} from "../../common/interfaces";
 import {AutoSizer, ScrollSync} from 'react-virtualized';
@@ -7,9 +7,14 @@ import {useScrollContainer} from 'react-indiana-drag-scroll';
 import './ScrollSync.example.css';
 import './range-calendar-schedule-virtualized.scss';
 import _ from "lodash";
+import moment from "moment/moment";
 import {
-    RangeCalendarScheduleCategoryVirtualized
-} from "./RangeCalendarScheduleCategoryVirtualized/RangeCalendarScheduleCategoryVirtualized";
+    RangeCalendarScheduleSiderVirtualized
+} from "./RangeCalendarScheduleSiderVirtualized/RangeCalendarScheduleSiderVirtualized";
+import {
+    RangeCalendarScheduleContainerVirtualized
+} from "./RangeCalendarScheduleContainerVirtualized/RangeCalendarScheduleContainerVirtualized";
+
 
 export const RangeCalendarScheduleVirtualized: React.FC<RangeCalendarScheduleVirtualizedInitialInterface> = (props) => {
 
@@ -22,7 +27,7 @@ export const RangeCalendarScheduleVirtualized: React.FC<RangeCalendarScheduleVir
     });
 
     return (
-        <div className='imamaad-range-calendar-schedule-virtualized' style={{height: '100%'}}>
+        <div className='imamaad-range-calendar-schedule-virtualized' style={{height: '100%', width: '100%'}}>
             <AutoSizer>
                 {({width, height}) => (
                     <ScrollSync>
@@ -37,6 +42,7 @@ export const RangeCalendarScheduleVirtualized: React.FC<RangeCalendarScheduleVir
                           }) => {
 
                             return (
+
                                 <RangeCalendarScheduleProvider
                                     initialProps={{
                                         width,
@@ -47,43 +53,24 @@ export const RangeCalendarScheduleVirtualized: React.FC<RangeCalendarScheduleVir
                                         clientHeight,
                                         clientWidth,
                                         scrollWidth,
+                                        onScroll,
                                         ...props,
                                     }}
                                 >
                                     <RangeCalendarScheduleConsumer>
-                                        {({categories, headerHeight, rowHeight, getRowCount}) => (
-                                            <div
-                                                ref={scrollContainer.ref}
-                                                style={{width, height, overflow: 'auto'}}
-                                                onScroll={(event: SyntheticEvent<HTMLDivElement>) => {
-                                                    const {
-                                                        clientHeight,
-                                                        clientWidth,
-                                                        scrollHeight,
-                                                        scrollLeft,
-                                                        scrollTop,
-                                                        scrollWidth
-                                                    } = event.currentTarget;
-
-                                                    onScroll({
-                                                        clientHeight,
-                                                        clientWidth,
-                                                        scrollHeight,
-                                                        scrollLeft,
-                                                        scrollTop,
-                                                        scrollWidth
-                                                    })
-                                                }}
-                                            >
-                                                {_.map(categories, (category, categoryIndex) => {
-                                                    return (
-                                                        <RangeCalendarScheduleCategoryVirtualized
-                                                            key={categoryIndex}
-                                                            categoryIndex={categoryIndex}
-                                                            category={category}
-                                                        />
-                                                    )
-                                                })}
+                                        {({
+                                              columnWidth,
+                                              rowHeight,
+                                              overScanColumnCount,
+                                              overScanRowCount,
+                                              days,
+                                              format,
+                                              headerHeight,
+                                              columns
+                                          }) => (
+                                            <div className={"GridRow"}>
+                                                <RangeCalendarScheduleSiderVirtualized/>
+                                                <RangeCalendarScheduleContainerVirtualized/>
                                             </div>
                                         )}
                                     </RangeCalendarScheduleConsumer>
@@ -91,6 +78,7 @@ export const RangeCalendarScheduleVirtualized: React.FC<RangeCalendarScheduleVir
                             );
                         }}
                     </ScrollSync>
+
                 )}
             </AutoSizer>
         </div>

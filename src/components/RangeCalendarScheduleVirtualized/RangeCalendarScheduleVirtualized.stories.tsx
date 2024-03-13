@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Meta, StoryObj} from "@storybook/react";
 import {RangeCalendarScheduleVirtualized} from "./RangeCalendarScheduleVirtualized";
 import moment from "moment";
+import {groupBy} from "lodash";
 
 const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
     /* 👇 The title prop is optional.
@@ -42,8 +43,101 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
                 defaultOpen: true,
                 columns: [
                     {
+                        title:'MOHAMMAD',
                         events: {
                             "2024-03-13": [
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 1',
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 2',
+
+                                },
+                                {
+                                    column: 'CRJ300',
+                                    children: 'test 3'
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 1',
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 2',
+
+                                },
+                                {
+                                    column: 'CRJ300',
+                                    children: 'test 3'
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 1',
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 2',
+
+                                },
+                                {
+                                    column: 'CRJ300',
+                                    children: 'test 3'
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        title:'ALI',
+                        events: {
+                            "2024-03-13": [
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 1',
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 2',
+
+                                },
+                                {
+                                    column: 'CRJ300',
+                                    children: 'test 3'
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 1',
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 2',
+
+                                },
+                                {
+                                    column: 'CRJ300',
+                                    children: 'test 3'
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 1',
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 2',
+
+                                },
+                                {
+                                    column: 'CRJ300',
+                                    children: 'test 3'
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        title:'MOJI',
+                        events: {
+                            "2024-03-15": [
                                 {
                                     column: 'CRJ200',
                                     children: 'test 1',
@@ -93,6 +187,27 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
                 defaultOpen: false,
                 columns: [
                     {
+                        title:'REZA',
+                        events: {
+                            "2024-03-14": [
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 1',
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 2',
+
+                                },
+                                {
+                                    column: 'CRJ300',
+                                    children: 'test 3'
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        title:'AHMAD',
                         events: {
                             "2024-03-14": [
                                 {
@@ -116,7 +231,7 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
         ],
 
         groupRenderer: (props: any) => {
-            return <div>test</div>
+            return <div>{props?.column?.title}</div>
         },
         itemRenderer: (props: any) => {
             return <div>test</div>
