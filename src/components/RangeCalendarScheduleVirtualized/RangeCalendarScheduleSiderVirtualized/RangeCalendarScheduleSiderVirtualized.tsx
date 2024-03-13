@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useMemo} from "react";
 import {useRangeCalendarScheduleVirtualized} from "../RangeCalendarScheduleContextVirtualized";
 import {Grid} from "react-virtualized";
 import scrollbarSize from 'dom-helpers/scrollbarSize';
+import _ from "lodash";
 
 
 export const RangeCalendarScheduleSiderVirtualized = () => {
@@ -54,7 +55,6 @@ export const RangeCalendarScheduleSiderVirtualized = () => {
         );
     }
 
-
     const _renderLeftSideCell = ({column, columnIndex, key, rowIndex, style}: any) => {
         return (
             <div
@@ -72,6 +72,67 @@ export const RangeCalendarScheduleSiderVirtualized = () => {
         );
     }
 
+    function processSizeColumns(inputArray: Array<number>) {
+        const resultArray = [];
+        let currentSum = 0;
+        let startIndex = -1;
+
+        for (let i = 0; i < inputArray.length; i++) {
+            if (inputArray[i] === 48) {
+                if (startIndex !== -1) {
+                    const lastRecord = resultArray[resultArray.length - 1];
+                    if (lastRecord) {
+                        currentSum += lastRecord.sum;
+                    }
+
+                    resultArray.push({
+                        index: startIndex,
+                        sum: currentSum,
+                        // record: inputArray.slice(startIndex, i)
+                    });
+                    currentSum = 0;
+                }
+                startIndex = i;
+            }
+
+            currentSum += inputArray[i];
+        }
+
+        // Check if there's an incomplete record at the end
+        if (startIndex !== -1) {
+            const lastRecord = resultArray[resultArray.length - 1];
+            if (lastRecord) {
+                currentSum += lastRecord.sum;
+            }
+
+            resultArray.push({
+                index: startIndex,
+                sum: currentSum,
+                // record: inputArray.slice(startIndex)
+            });
+        }
+
+        return resultArray;
+    }
+
+    function findClosestGreaterRecord(arr: Array<{ sum: number, index: number }>, targetSum: number) {
+        let closestGreaterRecord = null;
+        let minDifference = Infinity;
+
+        for (const item of arr) {
+            const difference = item.sum - targetSum;
+
+            if (difference >= 0 && difference < minDifference) {
+                minDifference = difference;
+                closestGreaterRecord = item;
+            }
+        }
+
+        return closestGreaterRecord;
+    }
+
+    const sizeColumns = useMemo(() => _.map(columns, column => column.type === "HEADER" ? headerHeight : rowHeight), [columns]);
+    const resultProcessSizeColumns = useMemo(() =>  processSizeColumns(sizeColumns), [sizeColumns]);
 
     return (
         <>
@@ -93,7 +154,9 @@ export const RangeCalendarScheduleSiderVirtualized = () => {
                     rowCount={1}
                     columnCount={1}
                     cellRenderer={(props) => {
-                        const column = columns?.[props?.rowIndex];
+                        const findIndex = findClosestGreaterRecord(resultProcessSizeColumns, scrollTop)?.index || props?.rowIndex;
+
+                        const column = columns?.[findIndex];
                         if (props.rowIndex === 0 && column?.type === "HEADER") {
                             return _renderLeftHeaderCell({...props, title: column.title});
                         }

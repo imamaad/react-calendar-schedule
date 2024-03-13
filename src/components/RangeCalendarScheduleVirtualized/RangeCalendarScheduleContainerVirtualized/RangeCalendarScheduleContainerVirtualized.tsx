@@ -32,6 +32,12 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
     } = useRangeCalendarScheduleVirtualized();
 
     const _renderHeaderCell = ({columnIndex, key, rowIndex, style}: any) => {
+        if (columnIndex === 0) {
+            return;
+        }
+
+        const cIndex = columnIndex - 1 >= 1 ? columnIndex - 1 : 0;
+
         return (
             <div
                 key={key}
@@ -46,10 +52,10 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
             >
                 <div className="imamaad-range-calendar-schedule-virtualized-sticky"
                      style={{flex: 1, textAlign: 'center', borderBottom: '2px solid #bbb'}}>
-                    {`${moment(days[columnIndex]).format(format?.top || 'YYYY-MM-DD')}`}
+                    {`${moment(days[cIndex]).format(format?.top || 'YYYY-MM-DD')}`}
                 </div>
                 <div style={{flex: 1, textAlign: 'center'}}>
-                    {`${moment(days[columnIndex]).format(format?.bottom || 'YYYY-MM-DD')}`}
+                    {`${moment(days[cIndex]).format(format?.bottom || 'YYYY-MM-DD')}`}
                 </div>
             </div>
         );
@@ -107,10 +113,12 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
                     }}>
                     <Grid
                         className={"HeaderGrid"}
-                        columnCount={days.length}
+                        columnCount={days.length + 1}
                         height={headerHeight}
                         overscanColumnCount={overScanColumnCount}
-                        cellRenderer={(props) => _renderHeaderCell({...props, days, format})}
+                        cellRenderer={(props) => {
+                            return _renderHeaderCell({...props, days, format})
+                        }}
                         rowHeight={headerHeight}
                         rowCount={1}
                         scrollLeft={scrollLeft}
@@ -132,7 +140,7 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
                     }}>
                     <Grid
                         className={"BodyGrid"}
-                        columnCount={days.length}
+                        columnCount={days.length + 1}
                         height={height - headerHeight}
                         onScroll={onScroll}
                         overscanColumnCount={overScanColumnCount}
