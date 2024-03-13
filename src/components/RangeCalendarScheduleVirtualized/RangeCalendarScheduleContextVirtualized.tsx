@@ -33,10 +33,7 @@ interface RangeCalendarScheduleVirtualizedContextType extends RangeCalendarSched
     overScanRowCount: number,
     columns: Array<{
         type: 'HEADER' | 'COLUMN',
-        title: string,
-        show: boolean,
-        groupId: string | number,
-        columnId: string | number,
+        title?: string,
         events?: { [propName: string]: Array<rangeVirtualizedDataSourceItemInterface> }
     }>
 }
@@ -78,20 +75,13 @@ export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps>
             _.reduce(categories, (result: Array<any> = [], category, key) => {
                 result.push({
                     type: 'HEADER',
-                    title: category.title,
-                    show: true,
-                    groupId: 1,
-                    columnId: 1
+                    ...category
                 });
 
                 _.each(category.columns, column => {
                     result.push({
                         type: 'COLUMN',
-                        title: column.title,
-                        show: true,
-                        groupId: 1,
-                        columnId: 1,
-                        events: column.events,
+                        ...column,
                     });
                 });
 

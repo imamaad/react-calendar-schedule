@@ -58,16 +58,7 @@ export const RangeCalendarScheduleVirtualized: React.FC<RangeCalendarScheduleVir
                                     }}
                                 >
                                     <RangeCalendarScheduleConsumer>
-                                        {({
-                                              columnWidth,
-                                              rowHeight,
-                                              overScanColumnCount,
-                                              overScanRowCount,
-                                              days,
-                                              format,
-                                              headerHeight,
-                                              columns
-                                          }) => (
+                                        {({}) => (
                                             <div className={"GridRow"}>
                                                 <RangeCalendarScheduleSiderVirtualized/>
                                                 <RangeCalendarScheduleContainerVirtualized/>

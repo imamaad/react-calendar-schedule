@@ -164,7 +164,7 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
                             return rowHeight;
                         }
                         }
-                        rowCount={columns.length - 1}
+                        rowCount={columns.length - 1 >= 0 ? columns.length - 1 : 0}
                         width={width}
                         columnWidth={({index}) => {
                             if (index === 0) {

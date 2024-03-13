@@ -93,8 +93,8 @@ export const RangeCalendarScheduleSiderVirtualized = () => {
                     rowCount={1}
                     columnCount={1}
                     cellRenderer={(props) => {
-                        const column = columns[props.rowIndex];
-                        if (props.rowIndex === 0 && column.type === "HEADER") {
+                        const column = columns?.[props?.rowIndex];
+                        if (props.rowIndex === 0 && column?.type === "HEADER") {
                             return _renderLeftHeaderCell({...props, title: column.title});
                         }
 
@@ -146,7 +146,7 @@ export const RangeCalendarScheduleSiderVirtualized = () => {
                     }
                     }
 
-                    rowCount={columns.length - 1}
+                    rowCount={columns.length - 1 >= 0 ? columns.length - 1 : 0}
                     scrollTop={scrollTop}
                     width={sidebarWidth}
                 />

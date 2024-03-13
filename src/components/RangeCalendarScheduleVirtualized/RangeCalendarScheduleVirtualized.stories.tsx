@@ -227,7 +227,8 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
                         }
                     },
                 ],
-            },
+            }
+
         ],
 
         groupRenderer: (props: any) => {
