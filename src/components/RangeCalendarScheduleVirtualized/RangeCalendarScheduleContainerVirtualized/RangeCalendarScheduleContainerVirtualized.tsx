@@ -4,6 +4,7 @@ import {useRangeCalendarScheduleVirtualized} from "../RangeCalendarScheduleConte
 import _ from "lodash";
 import moment from "moment";
 import scrollbarSize from 'dom-helpers/scrollbarSize';
+import {useScrollContainer} from "react-indiana-drag-scroll";
 
 export const RangeCalendarScheduleContainerVirtualized = () => {
 
@@ -30,6 +31,15 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
         onScroll,
         sidebarWidth
     } = useRangeCalendarScheduleVirtualized();
+
+    const scrollContainer = useScrollContainer({
+        mouseScroll: {
+            // ignoreElements: '.LeftSideGridContainer,.GridTitle',
+            rubberBand: false,
+            inertia: false,
+            overscroll: false,
+        }
+    });
 
     const _renderHeaderCell = ({columnIndex, key, rowIndex, style}: any) => {
         if (columnIndex === 0) {
@@ -145,6 +155,11 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
                         onScroll={onScroll}
                         overscanColumnCount={overScanColumnCount}
                         overscanRowCount={overScanRowCount}
+
+                        ref={(props: any) => {
+                            if (props?._scrollingContainer)
+                                scrollContainer.ref(props?._scrollingContainer)
+                        }}
 
                         cellRenderer={(props) => {
                             const rowIndex = props.rowIndex + 1;
