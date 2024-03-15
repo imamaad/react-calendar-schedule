@@ -75,15 +75,18 @@ export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps>
             _.reduce(categories, (result: Array<any> = [], category, key) => {
                 result.push({
                     type: 'HEADER',
-                    ...category
+                    ...category,
+
                 });
 
-                _.each(category.columns, column => {
-                    result.push({
-                        type: 'COLUMN',
-                        ...column,
+                if (category.defaultOpen) {
+                    _.each(category.columns, column => {
+                        result.push({
+                            type: 'COLUMN',
+                            ...column,
+                        });
                     });
-                });
+                }
 
                 return result;
             }, [])

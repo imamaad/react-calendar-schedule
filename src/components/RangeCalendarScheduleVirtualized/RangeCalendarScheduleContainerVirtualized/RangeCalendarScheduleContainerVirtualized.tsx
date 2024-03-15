@@ -1,5 +1,5 @@
-import React from "react";
-import {Grid} from "react-virtualized";
+import React, {useState} from "react";
+import {Grid, ScrollbarPresenceParams} from "react-virtualized";
 import {useRangeCalendarScheduleVirtualized} from "../RangeCalendarScheduleContextVirtualized";
 import _ from "lodash";
 import moment from "moment";
@@ -29,8 +29,16 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
         headerHeight,
         format,
         onScroll,
-        sidebarWidth
+        sidebarWidth,
+        bgColorHeader,
+        textColorHeader,
     } = useRangeCalendarScheduleVirtualized();
+
+    const [scrollbarPresence, setScrollbarPresence] = useState<ScrollbarPresenceParams>({
+        horizontal: false,
+        size: 0,
+        vertical: false,
+    });
 
     const scrollContainer = useScrollContainer({
         mouseScroll: {
@@ -41,13 +49,16 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
         }
     });
 
-    const _renderHeaderCell = ({columnIndex, key, rowIndex, style}: any) => {
+    const _renderHeaderCell = ({column, columnIndex, key, rowIndex, style}: any) => {
         if (columnIndex === 0) {
             return;
         }
 
         const cIndex = columnIndex - 1 >= 1 ? columnIndex - 1 : 0;
 
+        const show = column?.defaultOpen;
+
+        console.log({column})
         return (
             <div
                 key={key}
@@ -58,15 +69,23 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
                     display: 'flex',
                     flexDirection: "column",
                     justifyContent: "center",
+                    backgroundColor: bgColorHeader,
+                    color: textColorHeader,
                 }}
             >
-                <div className="imamaad-range-calendar-schedule-virtualized-sticky"
-                     style={{flex: 1, textAlign: 'center', borderBottom: '2px solid #bbb'}}>
-                    {`${moment(days[cIndex]).format(format?.top || 'YYYY-MM-DD')}`}
-                </div>
-                <div style={{flex: 1, textAlign: 'center'}}>
-                    {`${moment(days[cIndex]).format(format?.bottom || 'YYYY-MM-DD')}`}
-                </div>
+                {
+
+                    show &&
+                    <>
+                        <div className="imamaad-range-calendar-schedule-virtualized-sticky"
+                             style={{flex: 1, textAlign: 'center', borderBottom: '2px solid #bbb'}}>
+                            {`${moment(days[cIndex]).format(format?.top || 'YYYY-MM-DD')}`}
+                        </div>
+                        <div style={{flex: 1, textAlign: 'center'}}>
+                            {`${moment(days[cIndex]).format(format?.bottom || 'YYYY-MM-DD')}`}
+                        </div>
+                    </>
+                }
             </div>
         );
     }
@@ -116,10 +135,8 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
             <div>
                 <div
                     style={{
-                        backgroundColor: "#fff",
-                        color: "#000",
                         height: headerHeight,
-                        width: width - scrollbarSize(),
+                        width: scrollbarPresence.vertical ? width - scrollbarSize() : width,
                     }}>
                     <Grid
                         className={"HeaderGrid"}
@@ -127,12 +144,16 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
                         height={headerHeight}
                         overscanColumnCount={overScanColumnCount}
                         cellRenderer={(props) => {
-                            return _renderHeaderCell({...props, days, format})
+                            const rowIndex = props.rowIndex;
+
+                            const column = columns[rowIndex]
+
+                            return _renderHeaderCell({...props, days, format,column})
                         }}
                         rowHeight={headerHeight}
                         rowCount={1}
                         scrollLeft={scrollLeft}
-                        width={width - scrollbarSize()}
+                        width={scrollbarPresence.vertical ? width - scrollbarSize() : width}
                         columnWidth={({index}) => {
                             if (index === 0) {
                                 return sidebarWidth;
@@ -146,7 +167,7 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
                         backgroundColor: "#fff",
                         color: "#000",
                         height: height - headerHeight,
-                        width,
+                        width: width,
                     }}>
                     <Grid
                         className={"BodyGrid"}
@@ -167,7 +188,7 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
                             const column = columns[rowIndex]
 
                             if (column.type === "HEADER") {
-                                return _renderHeaderCell({format, days, ...props});
+                                return _renderHeaderCell({ ...props,column, format, days});
                             }
 
                             const day = days[props.columnIndex];
@@ -194,6 +215,9 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
                                 return sidebarWidth;
                             }
                             return columnWidth
+                        }}
+                        onScrollbarPresenceChange={(params: ScrollbarPresenceParams) => {
+                            setScrollbarPresence(params)
                         }}
                     />
                 </div>

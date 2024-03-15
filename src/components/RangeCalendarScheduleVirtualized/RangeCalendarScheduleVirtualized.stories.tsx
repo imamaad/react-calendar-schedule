@@ -230,7 +230,7 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
             },
             {
                 title: 'Aircraft 3',
-                defaultOpen: true,
+                defaultOpen: false,
                 columns: [
                     {
                         title:'MOHAMMAD',
@@ -420,7 +420,7 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
             },
             {
                 title: 'Aircraft 5',
-                defaultOpen: true,
+                defaultOpen: false,
                 columns: [
                     {
                         title:'MOHAMMAD',

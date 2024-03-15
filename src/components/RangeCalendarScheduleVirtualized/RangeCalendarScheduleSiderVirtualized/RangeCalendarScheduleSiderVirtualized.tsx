@@ -21,7 +21,9 @@ export const RangeCalendarScheduleSiderVirtualized = () => {
         openIcon,
         groupRenderer,
         bordered,
-        columnWidth
+        columnWidth,
+        bgColorHeader,
+        textColorHeader
     } = useRangeCalendarScheduleVirtualized();
 
 
@@ -38,6 +40,8 @@ export const RangeCalendarScheduleSiderVirtualized = () => {
                     padding: "0 10px",
                     border: bordered ? '1px solid #bbb' : 'unset',
                     boxSizing: "border-box",
+                    backgroundColor: bgColorHeader,
+                    color: textColorHeader,
                 }}
             >
                 <div>{title}</div>
@@ -63,6 +67,8 @@ export const RangeCalendarScheduleSiderVirtualized = () => {
                     ...style,
                     border: bordered ? '1px solid #bbb' : 'unset',
                     boxSizing: 'border-box',
+                    color: textColorSidebar,
+                    backgroundColor: bgColorSidebar,
                 }}
             >
                 {
@@ -142,8 +148,6 @@ export const RangeCalendarScheduleSiderVirtualized = () => {
                     position: 'absolute',
                     left: 0,
                     top: 0,
-                    color: textColorSidebar,
-                    backgroundColor: bgColorSidebar,
                 }}>
                 <Grid
                     className={"HeaderGrid"}
@@ -172,8 +176,6 @@ export const RangeCalendarScheduleSiderVirtualized = () => {
                     position: 'absolute',
                     left: 0,
                     top: headerHeight,
-                    color: textColorSidebar,
-                    backgroundColor: bgColorSidebar,
                 }}>
                 <Grid
                     overscanColumnCount={overScanColumnCount}
