@@ -1,5 +1,5 @@
 import React from "react";
-import {RangeCalendarScheduleConsumer, RangeCalendarScheduleProvider} from "./RangeCalendarScheduleContextVirtualized";
+import {RangeCalendarScheduleProvider} from "./RangeCalendarScheduleContextVirtualized";
 import {RangeCalendarScheduleVirtualizedInitialInterface} from "../../common/interfaces";
 import {AutoSizer, ScrollSync} from 'react-virtualized';
 import {
@@ -46,14 +46,10 @@ export const RangeCalendarScheduleVirtualized: React.FC<RangeCalendarScheduleVir
                                         ...props,
                                     }}
                                 >
-                                    <RangeCalendarScheduleConsumer>
-                                        {({}) => (
-                                            <div className={"GridRow"}>
-                                                <RangeCalendarScheduleSiderVirtualized/>
-                                                <RangeCalendarScheduleContainerVirtualized/>
-                                            </div>
-                                        )}
-                                    </RangeCalendarScheduleConsumer>
+                                    <div className={"GridRow"}>
+                                        <RangeCalendarScheduleSiderVirtualized/>
+                                        <RangeCalendarScheduleContainerVirtualized/>
+                                    </div>
                                 </RangeCalendarScheduleProvider>
                             );
                         }}

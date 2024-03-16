@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Grid, ScrollbarPresenceParams} from "react-virtualized";
 import {useRangeCalendarScheduleVirtualized} from "../RangeCalendarScheduleContextVirtualized";
 import _ from "lodash";
@@ -6,6 +6,105 @@ import moment from "moment";
 import scrollbarSize from 'dom-helpers/scrollbarSize';
 import {useScrollContainer} from "react-indiana-drag-scroll";
 
+
+const BodyCellRender = ({props}: any) => {
+    const {day, items, columnIndex, key, rowIndex, style, column} = props;
+
+    const divRef = useRef<HTMLDivElement>(null);
+    const [hasOverflowY, setHasOverflowY] = useState(false);
+    const [more, setMore] = useState(false);
+
+    const {
+        bordered,
+        onContextMenu,
+        itemRenderer, scrollHeight
+    } = useRangeCalendarScheduleVirtualized();
+
+
+    useEffect(() => {
+        const getDivDimensions = () => {
+            if (divRef.current) {
+                const {height: divRefHeight} = divRef.current.getBoundingClientRect();
+                setHasOverflowY(divRefHeight > style?.height);
+            }
+        };
+
+        // فراخوانی تابع در ابتدای رندر و همچنین هر بار که محتویات div تغییر می‌کند
+        getDivDimensions();
+        window.addEventListener('resize', getDivDimensions);
+
+        // حذف listener هنگام unmount
+        return () => {
+            window.removeEventListener('resize', getDivDimensions);
+        };
+    }, []);
+
+    const _renderItemCell = ({item, columnIndex, key, rowIndex, itemKey}: any) => {
+        return (
+            <div
+                className='imamaad-range-calendar-schedule-virtualized-item'
+                key={itemKey}
+                style={{
+                    marginBottom: 5,
+                }}
+            >
+                {itemRenderer({item, columnIndex, key, rowIndex, itemKey})}
+            </div>
+        );
+    }
+
+    return (
+        <div
+            key={key}
+            onContextMenu={
+                (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+                    event.preventDefault();
+                    if (event?.target === event?.currentTarget) {
+                        onContextMenu({day, items, columnIndex, key, rowIndex, column, event})
+                    }
+                }
+            }
+            style={{
+                ...style,
+                border: bordered ? '1px solid #bbb' : 'unset',
+                boxSizing: 'border-box',
+                overflow: "hidden"
+            }}
+        >
+            <div style={{position: "absolute", left: 0, right: 0, top: 0, bottom: 0}}>
+                {items.length ?
+                    <div ref={divRef} style={{padding: 5}}>
+                        {_.map(items, (item, itemKey) => _renderItemCell({
+                            item,
+                            columnIndex,
+                            key,
+                            rowIndex,
+                            style,
+                            itemKey
+                        }))}
+                    </div>
+                    : ""
+                }
+                {hasOverflowY &&
+                    <div
+                        style={{
+                            position: "absolute",
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            backgroundColor: "grey",
+                            textAlign: "center",
+                            cursor: "pointer"
+                        }}
+                        onClick={() => setMore(!more)}
+                    >
+                        more
+                    </div>
+                }
+            </div>
+        </div>
+    )
+}
 export const RangeCalendarScheduleContainerVirtualized = () => {
 
     const {
@@ -13,18 +112,11 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
         height,
         width,
         columnWidth,
-        columnCount,
         overScanColumnCount,
         overScanRowCount,
-        getRowCount,
         rowHeight,
-        scrollTop,
         scrollLeft,
-        textColorColumn,
-        bgColorColumn,
         bordered,
-        itemRenderer,
-        onContextMenu,
         columns,
         headerHeight,
         format,
@@ -58,7 +150,6 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
 
         const show = column?.defaultOpen;
 
-        console.log({column})
         return (
             <div
                 key={key}
@@ -90,44 +181,10 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
         );
     }
 
-    const _renderBodyCell = ({day, items, columnIndex, key, rowIndex, style, column}: any) => {
+    const _renderBodyCell = (props: any) => {
+        const {day, items, columnIndex, key, rowIndex, style, column} = props;
 
-        return (
-            <div
-                key={key}
-                onContextMenu={
-                    (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-                        event.preventDefault();
-                        if (event?.target === event?.currentTarget) {
-                            onContextMenu({day, items, columnIndex, key, rowIndex, column, event})
-                        }
-                    }
-                }
-                style={{
-                    ...style,
-                    border: bordered ? '1px solid #bbb' : 'unset',
-                    boxSizing: 'border-box',
-                    padding: 5,
-                    overflowY: 'auto'
-                }}
-            >
-                {_.map(items, (item, itemKey) => _renderItemCell({item, columnIndex, key, rowIndex, style, itemKey}))}
-            </div>
-        );
-    }
-
-    const _renderItemCell = ({item, columnIndex, key, rowIndex, itemKey}: any) => {
-        return (
-            <div
-                className='imamaad-range-calendar-schedule-virtualized-item'
-                key={itemKey}
-                style={{
-                    marginBottom: 5,
-                }}
-            >
-                {itemRenderer({item, columnIndex, key, rowIndex, itemKey})}
-            </div>
-        );
+        return <BodyCellRender props={props} key={key} {...props}/>;
     }
 
     return (
@@ -139,6 +196,9 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
                         width: scrollbarPresence.vertical ? width - scrollbarSize() : width,
                     }}>
                     <Grid
+                        containerProps={{
+                            test: "1111"
+                        }}
                         className={"HeaderGrid"}
                         columnCount={days.length + 1}
                         height={headerHeight}
@@ -148,7 +208,7 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
 
                             const column = columns[rowIndex]
 
-                            return _renderHeaderCell({...props, days, format,column})
+                            return _renderHeaderCell({...props, days, format, column})
                         }}
                         rowHeight={headerHeight}
                         rowCount={1}
@@ -188,10 +248,12 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
                             const column = columns[rowIndex]
 
                             if (column.type === "HEADER") {
-                                return _renderHeaderCell({ ...props,column, format, days});
+                                return _renderHeaderCell({...props, column, format, days});
                             }
 
-                            const day = days[props.columnIndex];
+                            const cIndex = props.columnIndex - 1 >= 1 ? props.columnIndex - 1 : 0;
+
+                            const day = days[cIndex];
                             const items = column?.events?.[day] || [];
 
                             return _renderBodyCell({...props, day, items, column});

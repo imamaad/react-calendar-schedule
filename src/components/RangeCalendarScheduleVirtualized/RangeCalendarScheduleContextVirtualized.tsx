@@ -40,12 +40,13 @@ interface RangeCalendarScheduleVirtualizedContextType extends RangeCalendarSched
 
 
 export const RangeCalendarScheduleContextVirtualized = createContext<RangeCalendarScheduleVirtualizedContextType>(null!);
+RangeCalendarScheduleContextVirtualized.displayName = 'RangeCalendarScheduleContext';
 
 export const useRangeCalendarScheduleVirtualized = () => {
     return useContext(RangeCalendarScheduleContextVirtualized);
 }
 
-export const RangeCalendarScheduleConsumer = RangeCalendarScheduleContextVirtualized.Consumer;
+// export const RangeCalendarScheduleConsumer = RangeCalendarScheduleContextVirtualized.Consumer;
 
 interface RangeScheduleProviderProps {
     children: React.ReactNode,

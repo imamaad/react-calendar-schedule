@@ -84,6 +84,32 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
                                 {
                                     column: 'CRJ300',
                                     children: 'test 3'
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 1',
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 2',
+
+                                },
+                                {
+                                    column: 'CRJ300',
+                                    children: 'test 3'
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 1',
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 2',
+
+                                },
+                                {
+                                    column: 'CRJ300',
+                                    children: 'test 3'
                                 }
                             ]
                         }
@@ -100,36 +126,6 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
                                     column: 'CRJ200',
                                     children: 'test 2',
 
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
                                 }
                             ]
                         }
@@ -426,6 +422,32 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
                         title:'MOHAMMAD',
                         events: {
                             "2024-03-13": [
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 1',
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 2',
+
+                                },
+                                {
+                                    column: 'CRJ300',
+                                    children: 'test 3'
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 1',
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 2',
+
+                                },
+                                {
+                                    column: 'CRJ300',
+                                    children: 'test 3'
+                                },
                                 {
                                     column: 'CRJ200',
                                     children: 'test 1',
