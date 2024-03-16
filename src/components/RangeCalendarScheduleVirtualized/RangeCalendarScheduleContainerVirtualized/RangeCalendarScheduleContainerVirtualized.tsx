@@ -12,14 +12,17 @@ const BodyCellRender = ({props}: any) => {
 
     const divRef = useRef<HTMLDivElement>(null);
     const [hasOverflowY, setHasOverflowY] = useState(false);
-    const [more, setMore] = useState(false);
 
     const {
         bordered,
         onContextMenu,
-        itemRenderer, scrollHeight
+        itemRenderer,
+        onChangeMore,
+        more
     } = useRangeCalendarScheduleVirtualized();
 
+    const cIndex = props.columnIndex - 1 >= 1 ? props.columnIndex - 1 : 0;
+    const rIndex = props.rowIndex + 1;
 
     useEffect(() => {
         const getDivDimensions = () => {
@@ -51,6 +54,13 @@ const BodyCellRender = ({props}: any) => {
                 {itemRenderer({item, columnIndex, key, rowIndex, itemKey})}
             </div>
         );
+    }
+
+    const onCloseMore = () => {
+        onChangeMore(undefined);
+    }
+    const onOpenMore = () => {
+        onChangeMore({columnIndex: cIndex, rowIndex: rIndex, style});
     }
 
     return (
@@ -92,13 +102,15 @@ const BodyCellRender = ({props}: any) => {
                             left: 0,
                             right: 0,
                             bottom: 0,
-                            backgroundColor: "grey",
+                            backgroundColor: "rgba(75,75,75,0.49)",
                             textAlign: "center",
-                            cursor: "pointer"
+                            cursor: "pointer",
+                            color: "#fff",
+                            fontSize: 12
                         }}
-                        onClick={() => setMore(!more)}
+                        onClick={onOpenMore}
                     >
-                        more
+                        More
                     </div>
                 }
             </div>

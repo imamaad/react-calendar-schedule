@@ -1,9 +1,7 @@
-import {createContext, useContext, useEffect, useMemo, useState} from "react";
+import {createContext, CSSProperties, useContext, useEffect, useMemo, useState} from "react";
 import * as React from "react";
 import {rangeBuildCalendarVirtualized} from "./rangeBuildCalendarVirtualized";
 import {RangeCalendarScheduleVirtualizedInitialInterface} from "../../common/interfaces";
-import clsx from 'clsx';
-import moment from "moment";
 import {RangeVirtualizedColumnInterface} from "../../common/interfaces/ColumnVirtualizedInterface";
 import _ from "lodash";
 import {OnScrollParams} from "react-virtualized";
@@ -31,6 +29,12 @@ interface RangeCalendarScheduleVirtualizedContextType extends RangeCalendarSched
     rowHeight: number,
     overScanColumnCount: number,
     overScanRowCount: number,
+    more: { rowIndex: number, columnIndex: number, style: CSSProperties | undefined } | undefined,
+    onChangeMore: (values: {
+        rowIndex: number,
+        columnIndex: number,
+        style: CSSProperties | undefined
+    } | undefined) => void,
     columns: Array<{
         type: 'HEADER' | 'COLUMN',
         title?: string,
@@ -58,6 +62,10 @@ export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps>
     const {startDate, endDate, categories} = initialProps;
 
     const [days, setDays] = useState<Array<string>>([]);
+    const [more, setMore] = useState<{
+        rowIndex: number, columnIndex: number,
+        style: CSSProperties | undefined
+    } | undefined>(undefined);
 
     const getDays = (sDate: string, eDate: string) => {
         return rangeBuildCalendarVirtualized(sDate, eDate);
@@ -93,6 +101,14 @@ export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps>
             }, [])
         , [categories]);
 
+    const onChangeMore = (values: {
+        rowIndex: number,
+        columnIndex: number,
+        style: CSSProperties | undefined
+    } | undefined) => {
+        setMore(values);
+    }
+
     const value: RangeCalendarScheduleVirtualizedContextType = {
         days: days,
         sidebarWidth: 230,
@@ -104,6 +120,8 @@ export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps>
         overScanRowCount: 5,
         bordered: false,
         columns,
+        more,
+        onChangeMore,
         ...initialProps,
     };
 

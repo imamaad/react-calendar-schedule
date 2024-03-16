@@ -11,6 +11,7 @@ import {
 
 import './ScrollSync.example.css';
 import './range-calendar-schedule-virtualized.scss';
+import {RangeCalendarScheduleMoreVirtualized} from "./RangeCalendarScheduleMoreVirtualized";
 
 export const RangeCalendarScheduleVirtualized: React.FC<RangeCalendarScheduleVirtualizedInitialInterface> = (props) => {
 
@@ -46,9 +47,12 @@ export const RangeCalendarScheduleVirtualized: React.FC<RangeCalendarScheduleVir
                                         ...props,
                                     }}
                                 >
-                                    <div className={"GridRow"}>
-                                        <RangeCalendarScheduleSiderVirtualized/>
-                                        <RangeCalendarScheduleContainerVirtualized/>
+                                    <div>
+                                        <RangeCalendarScheduleMoreVirtualized/>
+                                        <div className={"GridRow"}>
+                                            <RangeCalendarScheduleSiderVirtualized/>
+                                            <RangeCalendarScheduleContainerVirtualized/>
+                                        </div>
                                     </div>
                                 </RangeCalendarScheduleProvider>
                             );

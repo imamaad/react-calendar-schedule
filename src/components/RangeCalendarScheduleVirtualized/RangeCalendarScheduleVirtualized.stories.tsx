@@ -45,7 +45,7 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
                     {
                         title:'MOHAMMAD',
                         events: {
-                            "2024-03-13": [
+                            "2024-03-05": [
                                 {
                                     column: 'CRJ200',
                                     children: 'test 1',
@@ -180,7 +180,7 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
             },
             {
                 title: 'Aircraft 2',
-                defaultOpen: false,
+                defaultOpen: true,
                 columns: [
                     {
                         title:'REZA',
