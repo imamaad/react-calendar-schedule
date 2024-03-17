@@ -48,7 +48,7 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
                             "2024-03-05": [
                                 {
                                     column: 'CRJ200',
-                                    children: 'test 1',
+                                    children: 'test 1A',
                                 },
                                 {
                                     column: 'CRJ200',
@@ -637,7 +637,7 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
             return <div>{props?.column?.title}</div>
         },
         itemRenderer: (props: any) => {
-            return <div>test</div>
+            return <div>{props?.item?.children}</div>
         },
     }
 };

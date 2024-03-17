@@ -29,11 +29,12 @@ interface RangeCalendarScheduleVirtualizedContextType extends RangeCalendarSched
     rowHeight: number,
     overScanColumnCount: number,
     overScanRowCount: number,
-    more: { rowIndex: number, columnIndex: number, style: CSSProperties | undefined } | undefined,
+    more: { rowIndex: number, columnIndex: number, style: CSSProperties | undefined, key: string } | undefined,
     onChangeMore: (values: {
         rowIndex: number,
         columnIndex: number,
-        style: CSSProperties | undefined
+        style: CSSProperties | undefined,
+        key: string
     } | undefined) => void,
     columns: Array<{
         type: 'HEADER' | 'COLUMN',
@@ -64,7 +65,8 @@ export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps>
     const [days, setDays] = useState<Array<string>>([]);
     const [more, setMore] = useState<{
         rowIndex: number, columnIndex: number,
-        style: CSSProperties | undefined
+        style: CSSProperties | undefined,
+        key: string
     } | undefined>(undefined);
 
     const getDays = (sDate: string, eDate: string) => {
@@ -104,7 +106,7 @@ export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps>
     const onChangeMore = (values: {
         rowIndex: number,
         columnIndex: number,
-        style: CSSProperties | undefined
+        style: CSSProperties | undefined, key: string
     } | undefined) => {
         setMore(values);
     }

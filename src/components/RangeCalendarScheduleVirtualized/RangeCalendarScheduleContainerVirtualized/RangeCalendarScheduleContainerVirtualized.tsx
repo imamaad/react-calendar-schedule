@@ -60,7 +60,7 @@ const BodyCellRender = ({props}: any) => {
         onChangeMore(undefined);
     }
     const onOpenMore = () => {
-        onChangeMore({columnIndex: cIndex, rowIndex: rIndex, style});
+        onChangeMore({columnIndex: cIndex, rowIndex: rIndex, style, key});
     }
 
     return (
