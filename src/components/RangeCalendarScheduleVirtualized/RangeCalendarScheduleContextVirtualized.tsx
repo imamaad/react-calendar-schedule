@@ -41,6 +41,7 @@ interface RangeCalendarScheduleVirtualizedContextType extends RangeCalendarSched
         title?: string,
         events?: { [propName: string]: Array<rangeVirtualizedDataSourceItemInterface> }
     }>
+    onChangeOpen: (categoryId: string | number, visible: boolean) => void,
 }
 
 
@@ -63,6 +64,15 @@ export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps>
     const {startDate, endDate, categories} = initialProps;
 
     const [days, setDays] = useState<Array<string>>([]);
+
+    const [columns, setColumns] = useState<Array<{
+        type: 'HEADER' | 'COLUMN',
+        title?: string,
+        categoryId?: string | number,
+        defaultOpen?: boolean,
+        events?: { [propName: string]: Array<rangeVirtualizedDataSourceItemInterface> }
+    }>>([]);
+
     const [more, setMore] = useState<{
         rowIndex: number, columnIndex: number,
         style: CSSProperties | undefined,
@@ -82,26 +92,56 @@ export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps>
     }, [startDate, endDate]);
 
 
-    const columns = useMemo(() =>
-            _.reduce(categories, (result: Array<any> = [], category, key) => {
-                result.push({
-                    type: 'HEADER',
-                    ...category,
+    useEffect(() => {
+        const newColumns = _.reduce(categories, (result: Array<any> = [], category, key) => {
+            result.push({
+                type: 'HEADER',
+                ...category,
 
-                });
+            });
 
-                if (category.defaultOpen) {
-                    _.each(category.columns, column => {
-                        result.push({
-                            type: 'COLUMN',
-                            ...column,
-                        });
+            if (category.defaultOpen) {
+                _.each(category.columns, column => {
+                    result.push({
+                        type: 'COLUMN',
+                        ...column,
                     });
-                }
+                });
+            }
 
-                return result;
-            }, [])
-        , [categories]);
+            return result;
+        }, []);
+
+        setColumns(newColumns);
+    }, [categories]);
+
+    const onChangeOpen = (categoryId: string | number, visible: boolean) => {
+        const newColumns = _.reduce(categories, (result: Array<any> = [], category, key) => {
+
+            const findColumn = _.find(columns, column => column?.categoryId === category.categoryId);
+
+            const open = category?.categoryId === categoryId ? visible : findColumn?.defaultOpen;
+
+            result.push({
+                type: 'HEADER',
+                ...category,
+                defaultOpen: open
+            });
+
+            if (open) {
+                _.each(category.columns, column => {
+                    result.push({
+                        type: 'COLUMN',
+                        ...column,
+                    });
+                });
+            }
+
+            return result;
+        }, []);
+
+        setColumns(newColumns);
+    }
 
     const onChangeMore = (values: {
         rowIndex: number,
@@ -124,6 +164,7 @@ export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps>
         columns,
         more,
         onChangeMore,
+        onChangeOpen,
         ...initialProps,
     };
 

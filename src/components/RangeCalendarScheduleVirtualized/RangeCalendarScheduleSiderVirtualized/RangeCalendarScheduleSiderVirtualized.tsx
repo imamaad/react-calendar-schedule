@@ -23,11 +23,13 @@ export const RangeCalendarScheduleSiderVirtualized = () => {
         bordered,
         columnWidth,
         bgColorHeader,
-        textColorHeader
+        textColorHeader,
+        onChangeOpen
     } = useRangeCalendarScheduleVirtualized();
 
 
-    const _renderLeftHeaderCell = ({title = "", columnIndex, key, style}: any) => {
+    const _renderLeftHeaderCell = ({title = "", columnIndex, key, style, column, rowIndex}: any) => {
+
         return (
             <div
                 key={key}
@@ -46,12 +48,12 @@ export const RangeCalendarScheduleSiderVirtualized = () => {
             >
                 <div>{title}</div>
                 <div
-                    /* onClick={() => onChangeOpen(!open)}
-                     style={{
-                         cursor: "pointer",
-                         transition: 'all 200ms',
-                         transform: `rotate( ${open ? '-180deg' : '0deg'})`
-                     }}*/
+                    onClick={() => onChangeOpen(column?.categoryId, !column?.defaultOpen)}
+                    style={{
+                        cursor: "pointer",
+                        transition: 'all 200ms',
+                        transform: `rotate( ${column?.defaultOpen ? '-180deg' : '0deg'})`
+                    }}
                 >
                     {openIcon}
                 </div>
@@ -138,7 +140,7 @@ export const RangeCalendarScheduleSiderVirtualized = () => {
     }
 
     const sizeColumns = useMemo(() => _.map(columns, column => column.type === "HEADER" ? headerHeight : rowHeight), [columns]);
-    const resultProcessSizeColumns = useMemo(() =>  processSizeColumns(sizeColumns), [sizeColumns]);
+    const resultProcessSizeColumns = useMemo(() => processSizeColumns(sizeColumns), [sizeColumns]);
 
     return (
         <>
@@ -162,10 +164,10 @@ export const RangeCalendarScheduleSiderVirtualized = () => {
 
                         const column = columns?.[findIndex];
                         if (props.rowIndex === 0 && column?.type === "HEADER") {
-                            return _renderLeftHeaderCell({...props, title: column.title});
+                            return _renderLeftHeaderCell({...props, title: column.title, column});
                         }
 
-                        return <div/>;
+                        return <div key={props?.key}/>;
                     }
                     }
                 />
@@ -203,7 +205,7 @@ export const RangeCalendarScheduleSiderVirtualized = () => {
                         const column = columns[rowIndex];
 
                         if (column.type === "HEADER") {
-                            return _renderLeftHeaderCell({...props, title: column.title});
+                            return _renderLeftHeaderCell({...props, title: column.title, column});
                         }
 
 

@@ -41,9 +41,10 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
             {
                 title: 'Aircraft 1',
                 defaultOpen: true,
+                categoryId: 1,
                 columns: [
                     {
-                        title:'MOHAMMAD',
+                        title: 'MOHAMMAD',
                         events: {
                             "2024-03-05": [
                                 {
@@ -115,7 +116,7 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
                         }
                     },
                     {
-                        title:'ALI',
+                        title: 'ALI',
                         events: {
                             "2024-03-13": [
                                 {
@@ -131,7 +132,7 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
                         }
                     },
                     {
-                        title:'MOJI',
+                        title: 'MOJI',
                         events: {
                             "2024-03-15": [
                                 {
@@ -181,11 +182,64 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
             {
                 title: 'Aircraft 2',
                 defaultOpen: true,
+                categoryId: 2,
                 columns: [
                     {
-                        title:'REZA',
+                        title: 'MOHAMMAD',
                         events: {
-                            "2024-03-14": [
+                            "2024-03-05": [
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 1A',
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 2',
+
+                                },
+                                {
+                                    column: 'CRJ300',
+                                    children: 'test 3'
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 1',
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 2',
+
+                                },
+                                {
+                                    column: 'CRJ300',
+                                    children: 'test 3'
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 1',
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 2',
+
+                                },
+                                {
+                                    column: 'CRJ300',
+                                    children: 'test 3'
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 1',
+                                },
+                                {
+                                    column: 'CRJ200',
+                                    children: 'test 2',
+
+                                },
+                                {
+                                    column: 'CRJ300',
+                                    children: 'test 3'
+                                },
                                 {
                                     column: 'CRJ200',
                                     children: 'test 1',
@@ -203,33 +257,7 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
                         }
                     },
                     {
-                        title:'AHMAD',
-                        events: {
-                            "2024-03-14": [
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                }
-                            ]
-                        }
-                    },
-                ],
-            },
-            {
-                title: 'Aircraft 3',
-                defaultOpen: false,
-                columns: [
-                    {
-                        title:'MOHAMMAD',
+                        title: 'ALI',
                         events: {
                             "2024-03-13": [
                                 {
@@ -240,88 +268,12 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
                                     column: 'CRJ200',
                                     children: 'test 2',
 
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
                                 }
                             ]
                         }
                     },
                     {
-                        title:'ALI',
-                        events: {
-                            "2024-03-13": [
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        title:'MOJI',
+                        title: 'MOJI',
                         events: {
                             "2024-03-15": [
                                 {
@@ -350,268 +302,6 @@ const meta: Meta<typeof RangeCalendarScheduleVirtualized> = {
                                     column: 'CRJ300',
                                     children: 'test 3'
                                 },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                }
-                            ]
-                        }
-                    },
-                ],
-            },
-            {
-                title: 'Aircraft 4',
-                defaultOpen: false,
-                columns: [
-                    {
-                        title:'REZA',
-                        events: {
-                            "2024-03-14": [
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        title:'AHMAD',
-                        events: {
-                            "2024-03-14": [
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                }
-                            ]
-                        }
-                    },
-                ],
-            },
-            {
-                title: 'Aircraft 5',
-                defaultOpen: false,
-                columns: [
-                    {
-                        title:'MOHAMMAD',
-                        events: {
-                            "2024-03-13": [
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        title:'ALI',
-                        events: {
-                            "2024-03-13": [
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        title:'MOJI',
-                        events: {
-                            "2024-03-15": [
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                }
-                            ]
-                        }
-                    },
-                ],
-            },
-            {
-                title: 'Aircraft 6',
-                defaultOpen: false,
-                columns: [
-                    {
-                        title:'REZA',
-                        events: {
-                            "2024-03-14": [
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 1',
-                                },
-                                {
-                                    column: 'CRJ200',
-                                    children: 'test 2',
-
-                                },
-                                {
-                                    column: 'CRJ300',
-                                    children: 'test 3'
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        title:'AHMAD',
-                        events: {
-                            "2024-03-14": [
                                 {
                                     column: 'CRJ200',
                                     children: 'test 1',

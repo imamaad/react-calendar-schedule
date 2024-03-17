@@ -101,14 +101,14 @@ export const RangeCalendarScheduleMoreVirtualized = () => {
             >
                 <div
                 >
-                    <div style={{padding: 5}}>
+                    <div style={{padding: 5, marginBottom: 5}}>
                         {_.map(items, (item, itemKey) => _renderItemCell({
                             item,
                             columnIndex: more?.columnIndex,
                             key: more?.key,
                             rowIndex: more?.rowIndex,
                             style: more?.style,
-                            itemKey
+                            itemKey,
                         }))}
                     </div>
                     <div

@@ -4,6 +4,7 @@ import {RangeVirtualizedColumnInterface} from "./ColumnVirtualizedInterface";
 export interface RangeVirtualizedCategoryInterface {
     title: string,
     defaultOpen: boolean,
+    categoryId: string | number,
     columns: Array<RangeVirtualizedColumnInterface>,
 }
 

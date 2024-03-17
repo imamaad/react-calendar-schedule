@@ -18,7 +18,6 @@ const BodyCellRender = ({props}: any) => {
         onContextMenu,
         itemRenderer,
         onChangeMore,
-        more
     } = useRangeCalendarScheduleVirtualized();
 
     const cIndex = props.columnIndex - 1 >= 1 ? props.columnIndex - 1 : 0;
@@ -56,9 +55,6 @@ const BodyCellRender = ({props}: any) => {
         );
     }
 
-    const onCloseMore = () => {
-        onChangeMore(undefined);
-    }
     const onOpenMore = () => {
         onChangeMore({columnIndex: cIndex, rowIndex: rIndex, style, key});
     }
@@ -153,14 +149,14 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
         }
     });
 
-    const _renderHeaderCell = ({column, columnIndex, key, rowIndex, style}: any) => {
+    const _renderHeaderCell = ({column, columnIndex, key, rowIndex, style, days}: any) => {
         if (columnIndex === 0) {
             return;
         }
 
         const cIndex = columnIndex - 1 >= 1 ? columnIndex - 1 : 0;
 
-        const show = column?.defaultOpen;
+        const show = column?.defaultOpen || rowIndex === 0;
 
         return (
             <div
@@ -168,6 +164,8 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
                 style={{
                     ...style,
                     border: bordered ? '1px solid #bbb' : 'unset',
+                    borderRight: (!show && (cIndex + 1) !== days.length) ? "unset" : (bordered ? '1px solid #bbb' : 'unset'),
+                    borderLeft: (!show && cIndex !== 0) ? "unset" : (bordered ? '1px solid #bbb' : 'unset'),
                     boxSizing: 'border-box',
                     display: 'flex',
                     flexDirection: "column",
