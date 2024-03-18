@@ -62,14 +62,6 @@ const BodyCellRender = ({props}: any) => {
     return (
         <div
             key={key}
-            onContextMenu={
-                (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-                    event.preventDefault();
-                    if (event?.target === event?.currentTarget) {
-                        onContextMenu({day, items, columnIndex, key, rowIndex, column, event})
-                    }
-                }
-            }
             style={{
                 ...style,
                 border: bordered ? '1px solid #bbb' : 'unset',
@@ -77,7 +69,17 @@ const BodyCellRender = ({props}: any) => {
                 overflow: "hidden"
             }}
         >
-            <div style={{position: "absolute", left: 0, right: 0, top: 0, bottom: 0}}>
+            <div
+                style={{position: "absolute", left: 0, right: 0, top: 0, bottom: 0}}
+                onContextMenu={
+                    (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+                        event.preventDefault();
+                        if (event?.target === event?.currentTarget) {
+                            onContextMenu({day, items, columnIndex, key, rowIndex, column, event})
+                        }
+                    }
+                }
+            >
                 {items.length ?
                     <div ref={divRef} style={{padding: 5}}>
                         {_.map(items, (item, itemKey) => _renderItemCell({

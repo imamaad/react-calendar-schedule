@@ -16,7 +16,8 @@ export const RangeCalendarScheduleMoreVirtualized = () => {
         headerHeight,
         columns,
         days,
-        itemRenderer
+        itemRenderer,
+        onContextMenu
     } = useRangeCalendarScheduleVirtualized();
 
     const onClose = () => {
@@ -78,7 +79,15 @@ export const RangeCalendarScheduleMoreVirtualized = () => {
                     (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
                         event.preventDefault();
                         if (event?.target === event?.currentTarget) {
-                            // onContextMenu({day, items, columnIndex, key, rowIndex, column, event})
+                            onContextMenu({
+                                day: more?.columnIndex && days[more?.columnIndex],
+                                items,
+                                columnIndex: more?.columnIndex,
+                                key: more?.key,
+                                rowIndex: more?.rowIndex,
+                                column: more?.rowIndex && columns[more?.rowIndex],
+                                event
+                            })
                         }
                     }
                 }
@@ -99,31 +108,28 @@ export const RangeCalendarScheduleMoreVirtualized = () => {
                     boxSizing: "border-box",
                 }}
             >
+                <div style={{padding: 5, marginBottom: 25}}>
+                    {_.map(items, (item, itemKey) => _renderItemCell({
+                        item,
+                        columnIndex: more?.columnIndex,
+                        key: more?.key,
+                        rowIndex: more?.rowIndex,
+                        style: more?.style,
+                        itemKey,
+                    }))}
+                </div>
                 <div
+                    style={{
+                        width: "100%",
+                        backgroundColor: "rgba(75,75,75,0.49)",
+                        textAlign: "center",
+                        cursor: "pointer",
+                        color: "#fff",
+                        fontSize: 12
+                    }}
+                    onClick={onClose}
                 >
-                    <div style={{padding: 5, marginBottom: 5}}>
-                        {_.map(items, (item, itemKey) => _renderItemCell({
-                            item,
-                            columnIndex: more?.columnIndex,
-                            key: more?.key,
-                            rowIndex: more?.rowIndex,
-                            style: more?.style,
-                            itemKey,
-                        }))}
-                    </div>
-                    <div
-                        style={{
-                            width: "100%",
-                            backgroundColor: "rgba(75,75,75,0.49)",
-                            textAlign: "center",
-                            cursor: "pointer",
-                            color: "#fff",
-                            fontSize: 12
-                        }}
-                        onClick={onClose}
-                    >
-                        Close
-                    </div>
+                    Close
                 </div>
             </div>
         </div>
