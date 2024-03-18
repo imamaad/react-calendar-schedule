@@ -149,14 +149,14 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
         }
     });
 
-    const _renderHeaderCell = ({column, columnIndex, key, rowIndex, style, days}: any) => {
+    const _renderHeaderCell = ({column, columnIndex, key, rowIndex, style, days, showDays = false}: any) => {
         if (columnIndex === 0) {
             return;
         }
 
         const cIndex = columnIndex - 1 >= 1 ? columnIndex - 1 : 0;
 
-        const show = column?.defaultOpen || rowIndex === 0;
+        const show = column?.defaultOpen || showDays;
 
         return (
             <div
@@ -206,9 +206,6 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
                         width: scrollbarPresence.vertical ? width - scrollbarSize() : width,
                     }}>
                     <Grid
-                        containerProps={{
-                            test: "1111"
-                        }}
                         className={"HeaderGrid"}
                         columnCount={days.length + 1}
                         height={headerHeight}
@@ -218,7 +215,7 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
 
                             const column = columns[rowIndex]
 
-                            return _renderHeaderCell({...props, days, format, column})
+                            return _renderHeaderCell({...props, days, format, column,showDays:true,})
                         }}
                         rowHeight={headerHeight}
                         rowCount={1}
