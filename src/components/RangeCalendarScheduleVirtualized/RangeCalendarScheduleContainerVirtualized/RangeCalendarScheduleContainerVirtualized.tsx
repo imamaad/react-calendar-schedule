@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
-import {Grid, ScrollbarPresenceParams} from "react-virtualized";
+import {CellMeasurer, Grid, ScrollbarPresenceParams} from "react-virtualized";
 import {useRangeCalendarScheduleVirtualized} from "../RangeCalendarScheduleContextVirtualized";
 import _ from "lodash";
 import moment from "moment";
@@ -39,7 +39,7 @@ const BodyCellRender = ({props}: any) => {
         return () => {
             window.removeEventListener('resize', getDivDimensions);
         };
-    }, []);
+    }, [style?.height]);
 
     const _renderItemCell = ({item, columnIndex, key, rowIndex, itemKey}: any) => {
         return (
@@ -132,6 +132,7 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
         sidebarWidth,
         bgColorHeader,
         textColorHeader,
+        cacheGrid,
     } = useRangeCalendarScheduleVirtualized();
 
     const [scrollbarPresence, setScrollbarPresence] = useState<ScrollbarPresenceParams>({
@@ -192,9 +193,19 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
     }
 
     const _renderBodyCell = (props: any) => {
-        const {day, items, columnIndex, key, rowIndex, style, column} = props;
+        const {day, items, columnIndex, key, rowIndex, style, column, parent} = props;
 
-        return <BodyCellRender props={props} key={key} {...props}/>;
+        return (
+            <CellMeasurer
+                cache={cacheGrid}
+                columnIndex={columnIndex}
+                key={key}
+                parent={parent}
+                rowIndex={rowIndex}
+            >
+                <BodyCellRender props={props} key={key} {...props}/>
+            </CellMeasurer>
+        );
     }
 
     return (
@@ -215,7 +226,7 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
 
                             const column = columns[rowIndex]
 
-                            return _renderHeaderCell({...props, days, format, column,showDays:true,})
+                            return _renderHeaderCell({...props, days, format, column, showDays: true,})
                         }}
                         rowHeight={headerHeight}
                         rowCount={1}
@@ -274,7 +285,7 @@ export const RangeCalendarScheduleContainerVirtualized = () => {
                                 return headerHeight;
                             }
 
-                            return rowHeight;
+                            return cacheGrid.rowHeight({index: rowIndex});
                         }
                         }
                         rowCount={columns.length - 1 >= 0 ? columns.length - 1 : 0}

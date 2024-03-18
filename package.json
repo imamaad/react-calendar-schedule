@@ -60,6 +60,7 @@
     "react-animate-height": "^3.2.3",
     "react-dom": "^18.2.0",
     "react-indiana-drag-scroll": "^3.0.3-alpha",
+    "react-rnd": "^10.4.1",
     "react-virtualized": "^9.22.5",
     "rollup": "^3.5.0",
     "rollup-plugin-dts": "^5.0.0",

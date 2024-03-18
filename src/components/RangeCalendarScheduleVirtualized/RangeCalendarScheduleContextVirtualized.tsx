@@ -4,7 +4,7 @@ import {rangeBuildCalendarVirtualized} from "./rangeBuildCalendarVirtualized";
 import {RangeCalendarScheduleVirtualizedInitialInterface} from "../../common/interfaces";
 import {RangeVirtualizedColumnInterface} from "../../common/interfaces/ColumnVirtualizedInterface";
 import _ from "lodash";
-import {OnScrollParams} from "react-virtualized";
+import {CellMeasurerCache, OnScrollParams} from "react-virtualized";
 import {rangeVirtualizedDataSourceItemInterface} from "../../common/interfaces/rangeVirtualizedDataSourceInterface";
 
 
@@ -27,6 +27,7 @@ interface RangeCalendarScheduleVirtualizedContextType extends RangeCalendarSched
     columnCount: number,
     getRowCount: (columns: Array<RangeVirtualizedColumnInterface>) => number,
     rowHeight: number,
+    onChangeRowHeight: (height: number) => void,
     overScanColumnCount: number,
     overScanRowCount: number,
     more: { rowIndex: number, columnIndex: number, style: CSSProperties | undefined, key: string } | undefined,
@@ -42,6 +43,7 @@ interface RangeCalendarScheduleVirtualizedContextType extends RangeCalendarSched
         events?: { [propName: string]: Array<rangeVirtualizedDataSourceItemInterface> }
     }>
     onChangeOpen: (categoryId: string | number, visible: boolean) => void,
+    cacheGrid: CellMeasurerCache
 }
 
 
@@ -64,6 +66,7 @@ export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps>
     const {startDate, endDate, categories} = initialProps;
 
     const [days, setDays] = useState<Array<string>>([]);
+    const [rowHeight, setRowHeight] = useState<number>(initialProps.rowHeight || 175);
 
     const [columns, setColumns] = useState<Array<{
         type: 'HEADER' | 'COLUMN',
@@ -151,13 +154,21 @@ export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps>
         setMore(values);
     }
 
+    const onChangeRowHeight = (height: number) => {
+        setRowHeight(height);
+    }
+
+    const cacheGrid = new CellMeasurerCache({
+        fixedHeight: true,
+        defaultHeight: rowHeight,
+    });
+
     const value: RangeCalendarScheduleVirtualizedContextType = {
         days: days,
         sidebarWidth: 230,
         columnWidth: 75,
         columnCount: days.length,
         getRowCount: (columns) => columns.length,
-        rowHeight: 100,
         overScanColumnCount: 0,
         overScanRowCount: 5,
         bordered: false,
@@ -165,7 +176,10 @@ export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps>
         more,
         onChangeMore,
         onChangeOpen,
+        onChangeRowHeight,
+        cacheGrid,
         ...initialProps,
+        rowHeight: rowHeight,
     };
 
     return (

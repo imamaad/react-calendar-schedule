@@ -1,8 +1,9 @@
-import React, {useMemo} from "react";
+import React, {useMemo, useState} from "react";
 import {useRangeCalendarScheduleVirtualized} from "../RangeCalendarScheduleContextVirtualized";
-import {Grid} from "react-virtualized";
+import {CellMeasurer, CellMeasurerCache, Grid} from "react-virtualized";
 import scrollbarSize from 'dom-helpers/scrollbarSize';
 import _ from "lodash";
+import {Rnd} from "react-rnd";
 
 
 export const RangeCalendarScheduleSiderVirtualized = () => {
@@ -24,12 +25,14 @@ export const RangeCalendarScheduleSiderVirtualized = () => {
         columnWidth,
         bgColorHeader,
         textColorHeader,
-        onChangeOpen
+        onChangeOpen,
+        onChangeRowHeight,
+        cacheGrid
     } = useRangeCalendarScheduleVirtualized();
 
+    const [resize, setResize] = useState<number | undefined>(undefined);
 
-    const _renderLeftHeaderCell = ({title = "", columnIndex, key, style, column, rowIndex}: any) => {
-
+    const _renderLeftTopHeaderCell = ({title = "", columnIndex, key, style, column, rowIndex, parent}: any) => {
         return (
             <div
                 key={key}
@@ -61,22 +64,108 @@ export const RangeCalendarScheduleSiderVirtualized = () => {
         );
     }
 
-    const _renderLeftSideCell = ({column, columnIndex, key, rowIndex, style}: any) => {
+    const _renderLeftHeaderCell = ({title = "", columnIndex, key, style, column, rowIndex, parent}: any) => {
         return (
-            <div
+            <CellMeasurer
+                cache={cacheGrid}
+                columnIndex={columnIndex}
                 key={key}
-                style={{
-                    ...style,
-                    border: bordered ? '1px solid #bbb' : 'unset',
-                    boxSizing: 'border-box',
-                    color: textColorSidebar,
-                    backgroundColor: bgColorSidebar,
-                }}
+                parent={parent}
+                rowIndex={rowIndex}
             >
-                {
-                    groupRenderer({column, columnIndex, key, rowIndex, style})
-                }
-            </div>
+                <div
+                    key={key}
+                    style={{
+                        ...style,
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        padding: "0 10px",
+                        border: bordered ? '1px solid #bbb' : 'unset',
+                        boxSizing: "border-box",
+                        backgroundColor: bgColorHeader,
+                        color: textColorHeader,
+                    }}
+                >
+                    <div>{title}</div>
+                    <div
+                        onClick={() => onChangeOpen(column?.categoryId, !column?.defaultOpen)}
+                        style={{
+                            cursor: "pointer",
+                            transition: 'all 200ms',
+                            transform: `rotate( ${column?.defaultOpen ? '-180deg' : '0deg'})`
+                        }}
+                    >
+                        {openIcon}
+                    </div>
+                </div>
+            </CellMeasurer>
+        );
+    }
+
+    const _renderLeftSideCell = ({column, columnIndex, key, rowIndex, style, parent}: any) => {
+
+        return (
+            <CellMeasurer
+                cache={cacheGrid}
+                columnIndex={columnIndex}
+                key={key}
+                parent={parent}
+                rowIndex={rowIndex}
+            >
+                <div
+                    key={key}
+                    style={{
+                        ...style,
+                        border: bordered ? '1px solid #bbb' : 'unset',
+                        boxSizing: 'border-box',
+                        color: textColorSidebar,
+                        backgroundColor: bgColorSidebar,
+                        zIndex: resize === rowIndex ? 99 : "unset"
+                    }}
+                >
+                    <Rnd
+                        key={key}
+                        size={{width: style.width, height: style.height}}
+                        onResizeStart={(e, dir, elementRef) => {
+                            setResize(rowIndex)
+                            const testDiv = elementRef.querySelector('.resize-handle-bottom');
+                            if (testDiv) {
+                                (testDiv as HTMLDivElement).style.backgroundColor = '#97cf13';
+                            }
+                        }}
+                        enableResizing={{
+                            bottom: true,
+                            bottomLeft: false,
+                            bottomRight: false,
+                            left: false,
+                            right: false,
+                            top: false,
+                            topLeft: false,
+                            topRight: false,
+                        }}
+                        resizeHandleClasses={{
+                            bottom: 'resize-handle-bottom'
+                        }}
+                        onResizeStop={(e, direction, elementRef, delta, position) => {
+                            setResize(undefined);
+                            const testDiv = elementRef.querySelector('.resize-handle-bottom');
+                            if (testDiv) {
+                                (testDiv as HTMLDivElement).style.backgroundColor = 'transparent';
+                            }
+
+                            onChangeRowHeight(parseInt(elementRef.style.height));
+                        }}
+                        disableDragging={true}
+
+                    >
+                        {
+                            groupRenderer({column, columnIndex, key, rowIndex, style})
+                        }
+                    </Rnd>
+                </div>
+            </CellMeasurer>
         );
     }
 
@@ -164,7 +253,7 @@ export const RangeCalendarScheduleSiderVirtualized = () => {
 
                         const column = columns?.[findIndex];
                         if (props.rowIndex === 0 && column?.type === "HEADER") {
-                            return _renderLeftHeaderCell({...props, title: column.title, column});
+                            return _renderLeftTopHeaderCell({...props, title: column.title, column});
                         }
 
                         return <div key={props?.key}/>;
@@ -186,8 +275,9 @@ export const RangeCalendarScheduleSiderVirtualized = () => {
                     columnCount={1}
                     className={"LeftSideGrid"}
                     height={height - headerHeight - scrollbarSize()}
+                    deferredMeasurementCache={cacheGrid}
 
-                    // rowHeight={rowHeight}
+                    // rowHeight={cacheGrid.rowHeight}
                     rowHeight={({index}) => {
                         const rowIndex = index + 1;
 
@@ -195,7 +285,7 @@ export const RangeCalendarScheduleSiderVirtualized = () => {
                             return headerHeight;
                         }
 
-                        return rowHeight;
+                        return cacheGrid.rowHeight({index: index});
                     }
                     }
 

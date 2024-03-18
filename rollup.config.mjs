@@ -29,7 +29,7 @@ export default [
             typescript({tsconfig: "./tsconfig.json"}),
             postcss()
         ],
-        external: ["react", "react-dom", "moment", "lodash", "react-virtualized", "@types/react-virtualized", 'react-indiana-drag-scroll@^3.0.3-alpha', "react-animate-height"],
+        external: ["react", "react-dom", "moment", "lodash", "react-virtualized", "@types/react-virtualized", 'react-indiana-drag-scroll@^3.0.3-alpha', "react-animate-height", "react-rnd"],
     },
     {
         input: "dist/esm/types/index.d.ts",
