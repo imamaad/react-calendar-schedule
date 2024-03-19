@@ -39,7 +39,7 @@ const BodyCellRender = ({props}: any) => {
         return () => {
             window.removeEventListener('resize', getDivDimensions);
         };
-    }, [style?.height]);
+    }, [style?.height, items]);
 
     const _renderItemCell = ({item, columnIndex, key, rowIndex, itemKey}: any) => {
         return (
