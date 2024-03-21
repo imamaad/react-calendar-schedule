@@ -97,13 +97,18 @@ export const RangeCalendarScheduleProvider: React.FC<RangeScheduleProviderProps>
 
     useEffect(() => {
         const newColumns = _.reduce(categories, (result: Array<any> = [], category, key) => {
+
+            const findColumn = _.find(columns, column => column?.categoryId === category.categoryId);
+
+            const open = findColumn ? findColumn?.defaultOpen : category?.defaultOpen;
+
             result.push({
                 type: 'HEADER',
                 ...category,
-
+                defaultOpen: open
             });
 
-            if (category.defaultOpen) {
+            if (open) {
                 _.each(category.columns, column => {
                     result.push({
                         type: 'COLUMN',
